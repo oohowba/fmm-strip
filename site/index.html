@@ -1,0 +1,1987 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Open Mask（Invar 基材）鍍層移除藥水研發實驗指南：三個 1 公升配方、統一實驗步驟、六項肉眼判讀表與調整邏輯。">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Open Mask 鍍層移除藥水｜研發進度</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #17242b;
+      --ink-soft: #4d5c62;
+      --navy: #102c38;
+      --navy-deep: #091d25;
+      --paper: #f5f1e8;
+      --surface: #fffdf8;
+      --surface-cool: #eef3f2;
+      --line: #cbd5d1;
+      --teal: #17746c;
+      --teal-dark: #0d554f;
+      --teal-pale: #dceee9;
+      --copper: #b6542d;
+      --copper-dark: #813619;
+      --copper-pale: #f7e2d6;
+      --gold: #e6b95e;
+      --shadow: 0 18px 46px rgba(16, 44, 56, 0.09);
+      --radius: 18px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--paper);
+    }
+
+    body {
+      margin: 0;
+      min-width: 320px;
+      color: var(--ink);
+      background:
+        linear-gradient(rgba(16, 44, 56, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(16, 44, 56, 0.035) 1px, transparent 1px),
+        var(--paper);
+      background-size: 28px 28px;
+      font-family: "PingFang TC", "Microsoft JhengHei", "Noto Sans TC", sans-serif;
+      font-size: 17px;
+      line-height: 1.72;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    a {
+      color: var(--teal-dark);
+      text-underline-offset: 4px;
+      text-decoration-thickness: 2px;
+    }
+
+    a:hover {
+      color: var(--copper-dark);
+    }
+
+    a:focus-visible,
+    summary:focus-visible {
+      outline: 3px solid var(--gold);
+      outline-offset: 4px;
+      border-radius: 4px;
+    }
+
+    h1,
+    h2,
+    h3,
+    p,
+    dl,
+    dd,
+    ul,
+    ol {
+      margin-top: 0;
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: "Songti TC", "PMingLiU", serif;
+      line-height: 1.28;
+      letter-spacing: 0.015em;
+    }
+
+    h1 {
+      max-width: 900px;
+      margin-bottom: 22px;
+      color: #fffdf8;
+      font-size: clamp(36px, 7vw, 68px);
+      font-weight: 800;
+    }
+
+    h2 {
+      margin-bottom: 24px;
+      font-size: clamp(28px, 4.5vw, 42px);
+      color: var(--navy);
+    }
+
+    h3 {
+      margin-bottom: 12px;
+      font-size: 23px;
+      color: var(--navy);
+    }
+
+    p:last-child,
+    ul:last-child,
+    dl:last-child {
+      margin-bottom: 0;
+    }
+
+    sub,
+    sup {
+      position: relative;
+      vertical-align: baseline;
+      font-size: 15px;
+      line-height: 0;
+    }
+
+    sub {
+      bottom: -0.28em;
+    }
+
+    sup {
+      top: -0.48em;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      min-height: 560px;
+      display: flex;
+      align-items: flex-end;
+      color: #f5f8f5;
+      background:
+        radial-gradient(circle at 82% 16%, rgba(230, 185, 94, 0.24), transparent 26%),
+        linear-gradient(128deg, var(--navy-deep), var(--navy) 65%, #174b54);
+    }
+
+    .hero::before,
+    .hero::after {
+      content: "";
+      position: absolute;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      transform: rotate(18deg);
+    }
+
+    .hero::before {
+      width: 420px;
+      height: 420px;
+      right: -105px;
+      top: -165px;
+      border-radius: 50%;
+      box-shadow: 0 0 0 55px rgba(255, 255, 255, 0.025), 0 0 0 110px rgba(255, 255, 255, 0.018);
+    }
+
+    .hero::after {
+      width: 180px;
+      height: 520px;
+      right: 19%;
+      bottom: -240px;
+      border-color: rgba(230, 185, 94, 0.24);
+    }
+
+    .hero-inner,
+    main,
+    .footer-inner {
+      width: min(1120px, calc(100% - 40px));
+      margin-inline: auto;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      padding-block: 80px 68px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      color: #d4e7e3;
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 38px;
+      height: 3px;
+      background: var(--gold);
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 14px 20px;
+      font-size: 16px;
+    }
+
+    .status-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 9px 15px;
+      border: 1px solid rgba(255, 255, 255, 0.24);
+      border-radius: 999px;
+      color: #fff;
+      background: rgba(255, 255, 255, 0.1);
+      font-size: 15px;
+      font-weight: 700;
+      backdrop-filter: blur(5px);
+    }
+
+    .status-chip::before {
+      content: "";
+      width: 10px;
+      height: 10px;
+      flex: 0 0 auto;
+      border-radius: 50%;
+      background: #77d5a1;
+      box-shadow: 0 0 0 5px rgba(119, 213, 161, 0.13);
+    }
+
+    main {
+      padding-block: 0 92px;
+    }
+
+    section {
+      scroll-margin-top: 24px;
+      margin-top: 90px;
+    }
+
+    .summary-panel {
+      position: relative;
+      z-index: 2;
+      margin-top: -48px;
+      padding: 32px 36px;
+      border-left: 8px solid var(--gold);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+
+    .summary-label,
+    .section-kicker {
+      display: block;
+      margin-bottom: 9px;
+      color: var(--copper-dark);
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: 0.13em;
+    }
+
+    .summary-panel p {
+      margin-bottom: 0;
+      font-family: "Songti TC", "PMingLiU", serif;
+      font-size: 23px;
+      font-weight: 700;
+      line-height: 1.62;
+    }
+
+    .section-heading {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: end;
+      gap: 30px;
+      padding-bottom: 18px;
+      border-bottom: 2px solid var(--navy);
+    }
+
+    .section-heading h2 {
+      margin-bottom: 0;
+    }
+
+    .section-note {
+      max-width: 430px;
+      margin-bottom: 3px;
+      color: var(--ink-soft);
+      font-size: 16px;
+      text-align: right;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 26px;
+    }
+
+    .project-card,
+    .coating-card,
+    .condition-card,
+    .risk-card,
+    .source-card {
+      min-width: 0;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface);
+    }
+
+    .project-card {
+      padding: 25px;
+    }
+
+    .project-card dt {
+      margin-bottom: 8px;
+      color: var(--teal-dark);
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+    }
+
+    .project-card dd {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1.55;
+    }
+
+    .assumption {
+      margin-top: 18px;
+      padding: 18px 20px;
+      border-radius: 12px;
+      color: #573020;
+      background: var(--copper-pale);
+      font-size: 16px;
+    }
+
+    .coating-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px;
+      margin-top: 26px;
+    }
+
+    .coating-card {
+      position: relative;
+      overflow: hidden;
+      padding: 30px;
+      box-shadow: 0 10px 28px rgba(16, 44, 56, 0.06);
+    }
+
+    .coating-card::after {
+      content: attr(data-index);
+      position: absolute;
+      right: 18px;
+      top: -18px;
+      color: rgba(16, 44, 56, 0.07);
+      font-family: Georgia, serif;
+      font-size: 92px;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .material-line {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin: 18px 0 22px;
+    }
+
+    .material {
+      padding: 7px 12px;
+      border-radius: 7px;
+      color: var(--navy);
+      background: var(--teal-pale);
+      font-size: 16px;
+      font-weight: 800;
+    }
+
+    .sample-state {
+      display: inline-block;
+      margin-bottom: 12px;
+      padding: 5px 10px;
+      border-radius: 5px;
+      color: var(--teal-dark);
+      background: #e7f2ee;
+      font-size: 15px;
+      font-weight: 800;
+    }
+
+    .sample-state.pending {
+      color: var(--copper-dark);
+      background: var(--copper-pale);
+    }
+
+    .conditions-grid {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 26px;
+    }
+
+    .condition-card {
+      min-height: 150px;
+      padding: 20px 18px;
+      border-top: 5px solid var(--teal);
+    }
+
+    .condition-card.wide {
+      grid-column: span 2;
+    }
+
+    .condition-number {
+      display: block;
+      margin-bottom: 13px;
+      color: var(--copper);
+      font-family: Georgia, serif;
+      font-size: 28px;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .condition-card strong {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 18px;
+    }
+
+    .condition-card p {
+      color: var(--ink-soft);
+      font-size: 16px;
+      line-height: 1.55;
+    }
+
+    .timeline {
+      position: relative;
+      margin: 34px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 22px;
+      top: 20px;
+      bottom: 20px;
+      width: 3px;
+      background: linear-gradient(var(--teal) 0 55%, var(--line) 55% 100%);
+    }
+
+    .timeline-item {
+      position: relative;
+      display: grid;
+      grid-template-columns: 47px minmax(0, 1fr);
+      gap: 18px;
+      padding-bottom: 20px;
+    }
+
+    .timeline-marker {
+      position: relative;
+      z-index: 1;
+      width: 47px;
+      height: 47px;
+      display: grid;
+      place-items: center;
+      border: 3px solid var(--paper);
+      border-radius: 50%;
+      color: #fff;
+      background: var(--teal);
+      font-size: 20px;
+      font-weight: 900;
+    }
+
+    .timeline-item.pending .timeline-marker {
+      color: var(--ink-soft);
+      background: #d9dfdc;
+    }
+
+    .timeline-content {
+      padding: 20px 23px;
+      border: 1px solid #b9d5ce;
+      border-radius: 14px;
+      background: rgba(255, 253, 248, 0.88);
+    }
+
+    .timeline-item.pending .timeline-content {
+      border-style: dashed;
+      border-color: #b9c2be;
+      background: rgba(238, 243, 242, 0.72);
+    }
+
+    .timeline-tag {
+      display: inline-block;
+      margin-bottom: 7px;
+      color: var(--teal-dark);
+      font-size: 15px;
+      font-weight: 800;
+    }
+
+    .timeline-item.pending .timeline-tag {
+      color: var(--ink-soft);
+    }
+
+    .timeline-content p {
+      margin-bottom: 0;
+      font-size: 17px;
+    }
+
+    details {
+      margin-top: 26px;
+      border: 1px solid #9dbab3;
+      border-radius: var(--radius);
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+
+    summary {
+      position: relative;
+      padding: 24px 64px 24px 26px;
+      color: var(--navy);
+      font-family: "Songti TC", "PMingLiU", serif;
+      font-size: 22px;
+      font-weight: 800;
+      cursor: pointer;
+      list-style: none;
+    }
+
+    summary::-webkit-details-marker {
+      display: none;
+    }
+
+    summary::after {
+      content: "＋";
+      position: absolute;
+      right: 25px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--teal);
+      font-family: sans-serif;
+      font-size: 28px;
+    }
+
+    details[open] summary::after {
+      content: "－";
+    }
+
+    .chemistry-body {
+      padding: 0 26px 28px;
+    }
+
+    .mechanism-note {
+      margin: 0 0 24px;
+      padding: 16px 18px;
+      border-left: 5px solid var(--teal);
+      background: var(--surface-cool);
+      font-size: 16px;
+    }
+
+    .equation-group {
+      padding: 22px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .equation-group:first-of-type {
+      border-top: 0;
+    }
+
+    .equation-group p {
+      margin-bottom: 10px;
+    }
+
+    .equation-scroll {
+      overflow-x: auto;
+      padding: 16px 18px;
+      border-radius: 10px;
+      color: #eef8f5;
+      background: var(--navy-deep);
+      scrollbar-color: var(--gold) var(--navy);
+    }
+
+    .equation {
+      display: block;
+      width: max-content;
+      min-width: 100%;
+      font-family: "Menlo", "Consolas", monospace;
+      font-size: 16px;
+      line-height: 1.9;
+      white-space: nowrap;
+    }
+
+    .equation + .equation {
+      margin-top: 5px;
+    }
+
+    .avoid-label {
+      color: #ffe4d5;
+      font-weight: 800;
+    }
+
+    .risk-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(280px, 0.6fr);
+      gap: 22px;
+      margin-top: 26px;
+    }
+
+    .window-visual {
+      min-width: 0;
+      padding: 30px;
+      border-radius: var(--radius);
+      color: #fff;
+      background: var(--navy);
+    }
+
+    .window-visual h3 {
+      color: #fff;
+    }
+
+    .window-track {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      overflow: hidden;
+      margin: 26px 0 18px;
+      border-radius: 999px;
+      color: var(--navy-deep);
+      font-size: 15px;
+      font-weight: 800;
+      text-align: center;
+    }
+
+    .window-track span {
+      padding: 12px 8px;
+    }
+
+    .window-low,
+    .window-high {
+      background: #efc2ac;
+    }
+
+    .window-good {
+      background: #83d1b4;
+    }
+
+    .window-caption {
+      color: #d6e5e1;
+      font-size: 16px;
+    }
+
+    .risk-card {
+      padding: 26px;
+      border-color: #e3b49e;
+      background: var(--copper-pale);
+    }
+
+    .risk-card h3 {
+      color: var(--copper-dark);
+    }
+
+    .risk-card ul {
+      margin-bottom: 0;
+      padding-left: 1.35em;
+    }
+
+    .risk-card li + li {
+      margin-top: 8px;
+    }
+
+    .life-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 24px;
+    }
+
+    .life-item {
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--surface);
+    }
+
+    .life-item strong {
+      display: block;
+      margin-bottom: 7px;
+      color: var(--teal-dark);
+      font-size: 17px;
+    }
+
+    .life-item p {
+      color: var(--ink-soft);
+      font-size: 16px;
+      line-height: 1.55;
+    }
+
+    .source-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 26px;
+    }
+
+    .source-card {
+      display: flex;
+      min-height: 124px;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 22px;
+      text-decoration: none;
+      transition: transform 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
+    }
+
+    .source-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--teal);
+      box-shadow: 0 12px 28px rgba(16, 44, 56, 0.1);
+    }
+
+    .source-type {
+      display: block;
+      margin-bottom: 9px;
+      color: var(--copper-dark);
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+    }
+
+    .source-title {
+      display: block;
+      color: var(--navy);
+      font-size: 17px;
+      font-weight: 800;
+      line-height: 1.5;
+    }
+
+    .source-arrow {
+      align-self: flex-end;
+      color: var(--teal);
+      font-size: 22px;
+      line-height: 1;
+    }
+
+    .data-table-wrap {
+      overflow-x: auto;
+      margin-top: 24px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface);
+      box-shadow: 0 10px 28px rgba(16, 44, 56, 0.06);
+    }
+
+    table.data-table {
+      width: 100%;
+      min-width: 660px;
+      border-collapse: collapse;
+      font-size: 16px;
+    }
+
+    .data-table th,
+    .data-table td {
+      padding: 13px 16px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+      line-height: 1.6;
+    }
+
+    .data-table th {
+      color: var(--navy);
+      background: var(--surface-cool);
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+    }
+
+    .data-table tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .route-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 26px;
+    }
+
+    .route-card {
+      display: flex;
+      min-width: 0;
+      flex-direction: column;
+      padding: 26px;
+      border: 1px solid var(--line);
+      border-top: 6px solid var(--teal);
+      border-radius: var(--radius);
+      background: var(--surface);
+      box-shadow: 0 10px 28px rgba(16, 44, 56, 0.06);
+    }
+
+    .route-card.is-caution {
+      border-top-color: var(--copper);
+    }
+
+    .phenomena-stack,
+    .recipe-stack,
+    .sop-list {
+      display: grid;
+      gap: 22px;
+      margin-top: 26px;
+    }
+
+    .phenomenon-block {
+      padding: 28px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface);
+      box-shadow: 0 10px 28px rgba(16, 44, 56, 0.06);
+    }
+
+    .phenomenon-block > p {
+      margin-bottom: 14px;
+      font-size: 16px;
+    }
+
+    .phenomenon-block > p strong {
+      color: var(--teal-dark);
+    }
+
+    .phenomenon-block .window-visual {
+      margin-top: 24px;
+    }
+
+    .recipe-stack .route-card {
+      display: block;
+    }
+
+    .recipe-heading {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px 18px;
+    }
+
+    .recipe-heading h3,
+    .recipe-heading .route-tag {
+      margin-bottom: 0;
+    }
+
+    .recipe-stack .route-card .data-table-wrap {
+      box-shadow: none;
+    }
+
+    .table-layer {
+      min-width: 920px !important;
+    }
+
+    .table-recipe {
+      min-width: 820px !important;
+    }
+
+    .table-reading {
+      min-width: 940px !important;
+    }
+
+    .table-layer th:first-child,
+    .table-layer td:first-child,
+    .table-recipe th:first-child,
+    .table-recipe td:first-child {
+      width: 20%;
+    }
+
+    .table-reading th:first-child,
+    .table-reading td:first-child {
+      width: 22%;
+    }
+
+    .recipe-flow,
+    .condition-line {
+      margin-top: 18px;
+      padding: 16px 18px;
+      border-left: 5px solid var(--teal);
+      border-radius: 0 10px 10px 0;
+      background: var(--surface-cool);
+      font-size: 16px;
+    }
+
+    .condition-line {
+      border-left-color: var(--gold);
+      background: #f8f2df;
+    }
+
+    .route-card.is-caution .recipe-flow,
+    .route-card.is-caution .condition-line {
+      border-left-color: var(--copper);
+      background: var(--copper-pale);
+    }
+
+    .sop-list {
+      padding: 0;
+      list-style: none;
+      counter-reset: sop-step;
+    }
+
+    .sop-list li {
+      position: relative;
+      min-height: 72px;
+      padding: 22px 24px 22px 78px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--surface);
+      font-size: 16px;
+      counter-increment: sop-step;
+    }
+
+    .sop-list li::before {
+      content: counter(sop-step, decimal-leading-zero);
+      position: absolute;
+      left: 20px;
+      top: 20px;
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      color: #fff;
+      background: var(--teal);
+      font-family: Georgia, serif;
+      font-size: 17px;
+      font-weight: 800;
+    }
+
+    .route-tag {
+      align-self: flex-start;
+      display: inline-block;
+      margin-bottom: 12px;
+      padding: 5px 11px;
+      border-radius: 999px;
+      color: var(--teal-dark);
+      background: var(--teal-pale);
+      font-size: 15px;
+      font-weight: 800;
+    }
+
+    .route-card.is-caution .route-tag {
+      color: var(--copper-dark);
+      background: var(--copper-pale);
+    }
+
+    .route-card h3 {
+      margin-bottom: 10px;
+    }
+
+    .route-recipe {
+      margin-bottom: 14px;
+      color: var(--ink-soft);
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    .route-card ul {
+      flex: 1;
+      margin: 0 0 16px;
+      padding-left: 1.3em;
+      font-size: 16px;
+    }
+
+    .route-card li + li {
+      margin-top: 7px;
+    }
+
+    .route-cost {
+      align-self: flex-start;
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 8px;
+      color: var(--navy);
+      background: #f2ead2;
+      font-size: 16px;
+      font-weight: 800;
+    }
+
+    @media (max-width: 900px) {
+      .route-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .phenomenon-block,
+      .route-card {
+        padding: 24px 20px;
+      }
+
+      .data-table-wrap {
+        max-width: 100%;
+        overscroll-behavior-inline: contain;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .data-table th,
+      .data-table td {
+        word-break: normal;
+        overflow-wrap: normal;
+      }
+    }
+
+    footer {
+      color: #d8e4e1;
+      background: var(--navy-deep);
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      padding-block: 36px;
+      font-size: 15px;
+    }
+
+    .confidential {
+      color: #fff;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .summary-panel,
+      section {
+        animation: rise-in 600ms both;
+      }
+
+      section:nth-of-type(2) {
+        animation-delay: 80ms;
+      }
+
+      @keyframes rise-in {
+        from {
+          opacity: 0;
+          transform: translateY(18px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    }
+
+    @media (max-width: 900px) {
+      .project-grid,
+      .life-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .project-card:last-child {
+        grid-column: 1 / -1;
+      }
+
+      .conditions-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .condition-card.wide {
+        grid-column: span 1;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .hero {
+        min-height: 520px;
+      }
+
+      .hero-inner,
+      main,
+      .footer-inner {
+        width: min(100% - 28px, 1120px);
+      }
+
+      .hero-inner {
+        padding-block: 62px 62px;
+      }
+
+      section {
+        margin-top: 70px;
+      }
+
+      .summary-panel {
+        padding: 26px 23px;
+      }
+
+      .section-heading,
+      .coating-grid,
+      .risk-layout,
+      .source-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .section-note {
+        max-width: none;
+        text-align: left;
+      }
+
+      .coating-card {
+        padding: 25px 22px;
+      }
+
+      .timeline-content {
+        padding: 18px;
+      }
+
+      .window-visual {
+        padding: 24px 20px;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 480px) {
+      body {
+        line-height: 1.66;
+      }
+
+      h1 {
+        font-size: 38px;
+      }
+
+      .hero {
+        min-height: 560px;
+      }
+
+      .hero-meta {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .status-chip {
+        max-width: 100%;
+        white-space: normal;
+      }
+
+      .summary-panel p {
+        font-size: 20px;
+      }
+
+      .project-grid,
+      .conditions-grid,
+      .life-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .project-card:last-child {
+        grid-column: auto;
+      }
+
+      .condition-card {
+        min-height: 0;
+      }
+
+      .timeline::before {
+        left: 18px;
+      }
+
+      .timeline-item {
+        grid-template-columns: 39px minmax(0, 1fr);
+        gap: 12px;
+      }
+
+      .timeline-marker {
+        width: 39px;
+        height: 39px;
+        font-size: 17px;
+      }
+
+      summary {
+        padding: 21px 58px 21px 20px;
+        font-size: 20px;
+      }
+
+      .chemistry-body {
+        padding: 0 20px 22px;
+      }
+
+      .window-track {
+        grid-template-columns: minmax(0, 1fr);
+        border-radius: 12px;
+      }
+
+      .table-layer {
+        min-width: 920px !important;
+      }
+
+      .table-recipe {
+        min-width: 820px !important;
+      }
+
+      .table-reading {
+        min-width: 940px !important;
+      }
+
+      .sop-list li {
+        padding: 70px 18px 20px;
+      }
+
+      .sop-list li::before {
+        left: 18px;
+        top: 16px;
+      }
+
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="eyebrow">內部研發進度</div>
+      <h1>Open Mask 鍍層移除藥水｜研發進度</h1>
+      <div class="hero-meta">
+        <span>更新日期：2026-07-18（第三輪・實驗指南版）</span>
+        <span class="status-chip">三個 1L 配方＋採購清單定稿・等粗篩數據</span>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <aside class="summary-panel" aria-labelledby="summary-title">
+      <span class="summary-label" id="summary-title">一句話總結</span>
+      <p>本頁已從研究報告改寫成「研發實驗指南」：三個可直接照做的 1 公升配方（A 弱酸絡合＝首選、B 近中性＝最保護遮罩、C 強酸快攻＝最快但風險最高）、一套統一的實驗步驟，以及六項肉眼判讀表——每個現象代表什麼、下一步該調哪個成分，都寫在對應段落。核心觀念只有一句：保護 Invar 靠的不是藥水「認得」銀，而是氧化劑控量、把銀離子抓牢、時間到立刻出槽沖洗。</p>
+    </aside>
+
+    <section aria-labelledby="project-title">
+      <div class="section-heading">
+        <div>
+          <span class="section-kicker">PROJECT BRIEF｜專案輪廓</span>
+          <h2 id="project-title">這次要解決什麼？</h2>
+        </div>
+        <p class="section-note">重點不是單純把鍍層洗掉，而是要在 8 分鐘內完成，同時守住精密遮罩本體。</p>
+      </div>
+
+      <dl class="project-grid">
+        <div class="project-card">
+          <dt>客戶</dt>
+          <dd>面板廠客戶<br>（保密）</dd>
+        </div>
+        <div class="project-card">
+          <dt>處理對象</dt>
+          <dd>OLED 蒸鍍 Open Mask<br>（Invar 鐵鎳合金基材）</dd>
+        </div>
+        <div class="project-card">
+          <dt>開發目標</dt>
+          <dd>一款酸性或中性偏酸的溫和藥水，剝除兩種鍍層且不傷遮罩。</dd>
+        </div>
+      </dl>
+      <p class="assumption"><strong>前提已定案：</strong>清洗對象是 Open Mask（不是 FMM 細金屬遮罩），基材為 Invar 鐵鎳合金。藥水必須高選擇性——剝掉表面鍍層的同時，Invar 本體零損傷：不失重、不點蝕、不變粗糙、孔徑不變。正式遮罩不可直接當首輪試片。</p>
+    </section>
+
+    <section aria-labelledby="coating-title">
+      <div class="section-heading">
+        <div>
+          <span class="section-kicker">TWO COATINGS｜兩種鍍層</span>
+          <h2 id="coating-title">同一槽，要面對兩種組合</h2>
+        </div>
+        <p class="section-note">IZO 是氧化銦鋅導電膜；CPL 是最外層的有機保護層，需先被溶劑泡軟或溶解，藥水才碰得到下方金屬。</p>
+      </div>
+
+      <div class="coating-grid">
+        <article class="coating-card" data-index="1">
+          <span class="sample-state pending">尚無真實試片</span>
+          <h3>鍍層一</h3>
+          <div class="material-line" aria-label="鍍層一材料">
+            <span class="material">Yb 鐿</span>
+            <span class="material">Ag 銀</span>
+            <span class="material">IZO 氧化銦鋅</span>
+          </div>
+          <p>現階段用銀粉、Yb 顆粒與 IZO 顆粒做粗篩。塊材與粉末不能代表真實薄膜的剝除速度，但足以排序配方、並驗證會不會出現不溶殘渣與二次沉澱。</p>
+        </article>
+
+        <article class="coating-card" data-index="2">
+          <span class="sample-state">已有真實試片</span>
+          <h3>鍍層二</h3>
+          <div class="material-line" aria-label="鍍層二材料">
+            <span class="material">Mg-Ag 鎂銀</span>
+            <span class="material">CPL 有機保護層</span>
+          </div>
+          <p>可直接驗證 CPL 能否被泡軟剝除、Mg-Ag 是否在時限內去乾淨，以及處理後表面是否還有殘留。</p>
+        </article>
+      </div>
+    </section>
+
+    <section aria-labelledby="conditions-title">
+      <div class="section-heading">
+        <div>
+          <span class="section-kicker">NON-NEGOTIABLES｜硬條件</span>
+          <h2 id="conditions-title">開發不能退讓的界線</h2>
+        </div>
+      </div>
+
+      <div class="conditions-grid">
+        <article class="condition-card wide">
+          <span class="condition-number">01</span>
+          <strong>室溫、8 分鐘內</strong>
+          <p>20–25°C 不靠加熱；每 1 分鐘目視，鍍層消失就停，不多泡。</p>
+        </article>
+        <article class="condition-card wide">
+          <span class="condition-number">02</span>
+          <strong>Invar 零損傷（硬性關卡）</strong>
+          <p>單次失重 ≤0.001 mg/cm²、10 次循環累積 ≤0.005，無點蝕、粗糙度變化 ≤5%、孔徑不變。</p>
+        </article>
+        <article class="condition-card wide">
+          <span class="condition-number">03</span>
+          <strong>超音波 60–80 kHz</strong>
+          <p>實測功率密度 10–20 W/L（量熱法校正），中低功率間歇開，防空蝕把表面打毛。</p>
+        </article>
+        <article class="condition-card wide">
+          <span class="condition-number">04</span>
+          <strong>法規紅線（台灣）</strong>
+          <p>毒性化學物質（要向政府申請核可才能用）一律不進配方——硫脲即此類，確定出局。「優先管理化學品」是另一級：報備制、可合法使用（NMP 即此類，已確認可用），依公司 EHS 程序領用申報即可。</p>
+        </article>
+        <article class="condition-card wide">
+          <span class="condition-number">05</span>
+          <strong>成本 ≤NT$100／公升</strong>
+          <p>三條路線原料估 NT$10–20／公升，只用掉目標的一到二成。</p>
+        </article>
+        <article class="condition-card wide">
+          <span class="condition-number">06</span>
+          <strong>工業級藥水壽命</strong>
+          <p>不能洗幾片就失效；容量上限、監控指標與換液紅線都已量化。</p>
+        </article>
+      </div>
+    </section>
+
+    <section aria-labelledby="glossary-title">
+      <div class="section-heading">
+        <div>
+          <span class="section-kicker">GLOSSARY｜名詞解釋</span>
+          <h2 id="glossary-title">先把這幾個詞講白話</h2>
+        </div>
+        <p class="section-note">頁面各處會反覆用到這幾個詞，先在這裡講清楚。</p>
+      </div>
+
+      <div class="life-grid">
+        <article class="condition-card">
+          <strong>空蝕（cavitation）</strong>
+          <p>超音波在液體裡拉出無數微小空穴（蒸氣泡），泡破裂的瞬間像微型水鎚敲在表面上。適度的空蝕幫忙把泡軟的鍍層敲下來；功率太強或敲太久，會把 Invar 表面敲出微小麻點、變粗糙——這就是「把表面打毛」。所以超音波規定 60–80 kHz、中低功率：只借它剝層，不讓它傷遮罩。</p>
+        </article>
+        <article class="condition-card">
+          <strong>配體（ligand）</strong>
+          <p>「抓金屬離子的鉗子」。帶著能咬住金屬離子的原子（常見是氧、氮、硫）的分子或離子，把游離的銀離子整顆包住；被包住的銀離子就沒空跑去 Invar 上反鍍。本案的配體：甲硫胺酸（A/C 用）、硫代硫酸根（B 用）。</p>
+        </article>
+        <article class="condition-card">
+          <strong>螯合劑（chelator）</strong>
+          <p>多隻手的配體，像螃蟹雙螯把離子夾死（螯合的「螯」就是蟹螯）。檸檬酸、EDTA 都是：把溶出的鐵、銦、鐿夾住，不讓它們變成沉澱渣。注意不是越多越好——夾得太兇會連 Invar 表面的鐵、鎳也拉下來，反而促進腐蝕。</p>
+        </article>
+        <article class="condition-card">
+          <strong>鈍化（passivation）</strong>
+          <p>金屬表面長出一層緻密薄膜，把底下的金屬「封起來」反而不溶了。特定酸度＋雙氧水過濃時，銀表面就可能長出這種氧化膜——這是「氧化劑加越多反而溶越慢」的主要嫌疑犯。</p>
+        </article>
+        <article class="condition-card">
+          <strong>緩蝕劑（corrosion inhibitor）</strong>
+          <p>保護金屬本體的成分，兩種打法：BTA、PVP 是「吸附成膜型」（搶先鋪一層保護膜）；鉬酸鈉是「鈍化型」（幫 Invar 表面長出穩定氧化膜）。</p>
+        </article>
+        <article class="condition-card">
+          <strong>緩衝（buffer）</strong>
+          <p>讓 pH 不亂漂的成分組合（檸檬酸＋檸檬酸鈉）。酸被鍍層消耗時，緩衝持續放出氫離子補位，pH 就穩住。</p>
+        </article>
+      </div>
+    </section>
+
+    <section aria-labelledby="regs-title">
+      <div class="section-heading">
+        <div>
+          <span class="section-kicker">TAIWAN COMPLIANCE｜法規紅線</span>
+          <h2 id="regs-title">原料先過台灣法規這一關</h2>
+        </div>
+        <p class="section-note">初期開發只用「買得到、不用向政府申請」的原料；清單以環境部化學物質管理署與勞動部職安署公告為準。</p>
+      </div>
+
+      <div class="data-table-wrap" tabindex="0">
+        <table class="data-table">
+          <thead>
+            <tr><th>原料</th><th>台灣管制狀態</th><th>本案處置</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>硫脲</strong>（CAS 62-56-6）</td>
+              <td>第四類毒性化學物質，列管編號 144-01，管制濃度 1%；運作前須向縣市主管機關申報毒理資料並取得核可、每年申報運作量</td>
+              <td><strong>不使用</strong>（效果再好也不用）</td>
+            </tr>
+            <tr>
+              <td>二氧化硫脲（TDO）</td>
+              <td>勞動部「優先管理化學品」，達門檻需備查</td>
+              <td>不使用（且本質是還原劑，幫不了溶銀）</td>
+            </tr>
+            <tr>
+              <td>N,N'-二甲基硫脲（DMTU）</td>
+              <td>未見列管，但屬硫脲衍生物</td>
+              <td>只當實驗室對照，不進商用配方（客戶 EHS 審查風險）</td>
+            </tr>
+            <tr>
+              <td><strong>硫代硫酸鈉</strong>、<strong>甲硫胺酸</strong>、半胱胺酸</td>
+              <td>皆無列管</td>
+              <td>前兩者入選為硫脲替代品第一、二名</td>
+            </tr>
+            <tr>
+              <td>MSA、檸檬酸、甘胺酸、DMSO、DPM、EDTA-2Na</td>
+              <td>無毒化物列管</td>
+              <td>可用</td>
+            </tr>
+            <tr>
+              <td>NMP</td>
+              <td>勞動部「優先管理化學品」（報備制；非毒化物、不需核可）</td>
+              <td><strong>可用</strong>（客戶端已確認；依公司 EHS 程序領用）</td>
+            </tr>
+            <tr>
+              <td>雙氧水</td>
+              <td>濃度 ≥36wt% 屬消防法第六類公共危險物品（單一場所管制量 300 kg）</td>
+              <td>採 35% 規格避開；囤量大時留意消防申報</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="assumption"><strong>硫脲替代邏輯：</strong>硫脲抓銀靠的是「硫原子的配位能力」。同樣帶硫供體、又完全合法的替代是 <strong>硫代硫酸鈉</strong>（抓銀最強、最便宜，但只能在中性附近工作，遇強酸會分解出硫）與 <strong>甲硫胺酸</strong>（食品級胺基酸、帶硫醚官能基，酸中可用、無味無列管，抓力較溫和需搭配 PVP 使用）。</p>
+    </section>
+
+    <section aria-labelledby="progress-title">
+      <div class="section-heading">
+        <div>
+          <span class="section-kicker">MILESTONES｜研發進度</span>
+          <h2 id="progress-title">已經知道什麼，接著驗證什麼</h2>
+        </div>
+        <p class="section-note">綠色實心為已完成；灰色虛線為尚未完成。</p>
+      </div>
+
+      <ol class="timeline">
+        <li class="timeline-item">
+          <span class="timeline-marker" aria-hidden="true">✓</span>
+          <div class="timeline-content">
+            <span class="timeline-tag">已完成｜第一輪（07-18 凌晨）</span>
+            <p><strong>文獻與專利初查：</strong>確立「弱酸＋氧化劑＋溶劑」大方向，排除草酸、鹽酸、硝酸。</p>
+          </div>
+        </li>
+        <li class="timeline-item">
+          <span class="timeline-marker" aria-hidden="true">✓</span>
+          <div class="timeline-content">
+            <span class="timeline-tag">已完成｜第二輪・前提修正</span>
+            <p><strong>對象定案 Open Mask（Invar 基材）：</strong>台灣法規三重查證完成，硫脲確認列管、正式出局；替代品與全部原料的管制狀態逐一過關。</p>
+          </div>
+        </li>
+        <li class="timeline-item">
+          <span class="timeline-marker" aria-hidden="true">✓</span>
+          <div class="timeline-content">
+            <span class="timeline-tag">已完成｜第二輪・學理定量</span>
+            <p><strong>機制、離子交互與壽命全部算過：</strong>電位表確認保護 Invar 只能靠動力學；銀反鍍與二次沉澱的條件、防範配體都已量化；雙氧水容量算出每公升約可吃 5.4–8.6 克銀。</p>
+          </div>
+        </li>
+        <li class="timeline-item">
+          <span class="timeline-marker" aria-hidden="true">✓</span>
+          <div class="timeline-content">
+            <span class="timeline-tag">已完成｜第二輪・實驗設計</span>
+            <p><strong>三大路線與粗篩方法定稿：</strong>含粗篩換算、判停紅線與評分權重（Invar 為硬性關卡）。</p>
+          </div>
+        </li>
+        <li class="timeline-item">
+          <span class="timeline-marker" aria-hidden="true">✓</span>
+          <div class="timeline-content">
+            <span class="timeline-tag">已完成｜第三輪・實驗指南（07-18）</span>
+            <p><strong>依工程師回饋全面改寫：</strong>NMP 確認可用、納入三個配方作 CPL 溶劑；三方案 1 公升配製單、統一實驗步驟與六項肉眼判讀表全部上線，助理可直接照表開跑。</p>
+          </div>
+        </li>
+        <li class="timeline-item pending">
+          <span class="timeline-marker" aria-hidden="true">○</span>
+          <div class="timeline-content">
+            <span class="timeline-tag">下一步｜未完成</span>
+            <p><strong>粗篩開跑：</strong>用銀粉、鐿顆粒、IZO 顆粒與 Invar 片跑三方案粗篩，數據回饋後修配方。</p>
+          </div>
+        </li>
+        <li class="timeline-item pending">
+          <span class="timeline-marker" aria-hidden="true">○</span>
+          <div class="timeline-content">
+            <span class="timeline-tag">之後｜未完成</span>
+            <p><strong>真試片驗證：</strong>入選配方上 Mg-Ag＋CPL 真實試片，做混合負載挑戰與壽命曲線，定版超音波條件。</p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <section aria-labelledby="chemistry-title">
+      <div class="section-heading">
+        <div>
+          <span class="section-kicker">LAYER BY LAYER｜每一層怎麼掉</span>
+          <h2 id="chemistry-title">五種材料，各自靠哪個成分移除？</h2>
+        </div>
+        <p class="section-note">卡住的時候先查這張表：哪一層沒掉，就調它對應的旋鈕。</p>
+      </div>
+
+      <div class="data-table-wrap" tabindex="0">
+        <table class="data-table table-layer">
+          <thead>
+            <tr><th>材料</th><th>靠什麼移除</th><th>原理（一句話）</th><th>溶不動時第一個調整</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Ag 銀</strong></td>
+              <td>氧化劑＋配體（A、C 用雙氧水；B 用三價鐵）</td>
+              <td>銀不溶於一般酸，要先被氧化劑氧化成銀離子，再靠可溶鹽或配體帶進溶液</td>
+              <td>A/C：H₂O₂ 加 0.05 M 一階，沒改善就換新鮮雙氧水再試；B：三價鐵加倍（<strong>禁加雙氧水</strong>）</td>
+            </tr>
+            <tr>
+              <td><strong>Mg 鎂</strong></td>
+              <td>酸</td>
+              <td>活性金屬遇酸直接溶解，冒氫氣細泡</td>
+              <td>pH 降 0.3</td>
+            </tr>
+            <tr>
+              <td><strong>Yb 鐿</strong></td>
+              <td>酸</td>
+              <td>同鎂；但 pH 高於 6.5 會變成白色氫氧化鐿渣</td>
+              <td>pH 降 0.3，並確認全程 pH 沒漂高</td>
+            </tr>
+            <tr>
+              <td><strong>IZO 氧化銦鋅</strong></td>
+              <td>酸</td>
+              <td>金屬氧化物的酸鹼中和，不需要氧化劑；氧化銦比氧化鋅慢</td>
+              <td>pH 降 0.3 或延長 1–2 分鐘</td>
+            </tr>
+            <tr>
+              <td><strong>CPL 有機保護層</strong></td>
+              <td>NMP 溶劑</td>
+              <td>不是化學反應：被溶劑泡軟、溶解，超音波幫忙剝離</td>
+              <td>NMP 由 5% 提到 10%（v/v）</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <details>
+        <summary>展開各層反應式（輔助判斷用）</summary>
+        <div class="chemistry-body">
+          <div class="equation-group">
+            <h3>A／C 方案（酸性＋雙氧水）</h3>
+            <p>銀要先被氧化才溶；鎂、鐿遇酸放氫氣——顆粒上冒細泡就是這兩條；IZO 是酸鹼中和，不冒泡。</p>
+            <div class="equation-scroll" tabindex="0">
+              <span class="equation">2Ag + H<sub>2</sub>O<sub>2</sub> + 2H<sup>+</sup> → 2Ag<sup>+</sup> + 2H<sub>2</sub>O</span>
+              <span class="equation">2Ag + H<sub>2</sub>O<sub>2</sub> + 2CH<sub>3</sub>SO<sub>3</sub>H → 2CH<sub>3</sub>SO<sub>3</sub>Ag（可溶）+ 2H<sub>2</sub>O</span>
+              <span class="equation">Mg + 2H<sup>+</sup> → Mg<sup>2+</sup> + H<sub>2</sub>↑</span>
+              <span class="equation">2Yb + 6H<sup>+</sup> → 2Yb<sup>3+</sup> + 3H<sub>2</sub>↑</span>
+              <span class="equation">In<sub>2</sub>O<sub>3</sub> + 6H<sup>+</sup> → 2In<sup>3+</sup> + 3H<sub>2</sub>O</span>
+              <span class="equation">ZnO + 2H<sup>+</sup> → Zn<sup>2+</sup> + H<sub>2</sub>O</span>
+            </div>
+          </div>
+          <div class="equation-group">
+            <h3>B 方案（近中性：三價鐵氧化＋硫代硫酸根抓銀）</h3>
+            <p>三價鐵把銀氧化（自己變二價鐵），硫代硫酸根立刻把銀離子包走。注意第三條競爭副反應：三價鐵也會去氧化硫代硫酸根本身——氧化當量不是全部用在銀上，這是 B 槽液壽命短的原因之一。</p>
+            <div class="equation-scroll" tabindex="0">
+              <span class="equation">Ag + [Fe(EDTA)]<sup>−</sup> → Ag<sup>+</sup> + [Fe(EDTA)]<sup>2−</sup></span>
+              <span class="equation">Ag<sup>+</sup> + 2S<sub>2</sub>O<sub>3</sub><sup>2−</sup> → [Ag(S<sub>2</sub>O<sub>3</sub>)<sub>2</sub>]<sup>3−</sup></span>
+              <span class="equation">2[Fe(EDTA)]<sup>−</sup> + 2S<sub>2</sub>O<sub>3</sub><sup>2−</sup> → 2[Fe(EDTA)]<sup>2−</sup> + S<sub>4</sub>O<sub>6</sub><sup>2−</sup>（競爭副反應：吃掉氧化當量）</span>
+            </div>
+          </div>
+          <div class="equation-group">
+            <h3>CPL</h3>
+            <p>物理溶解，沒有反應式——NMP 把有機層泡軟、帶進溶劑相，超音波幫忙剝離。</p>
+            <div class="equation-scroll" tabindex="0">
+              <span class="equation">CPL 有機小分子 ── NMP 溶脹溶解 ──→ 進入溶劑相</span>
+            </div>
+          </div>
+          <div class="equation-group">
+            <h3>要避免的副反應（看到對應現象就對號入座）</h3>
+            <p></p>
+            <div class="equation-scroll" tabindex="0">
+              <span class="equation">Fe + H<sub>2</sub>O<sub>2</sub> + 2H<sup>+</sup> → Fe<sup>2+</sup> + 2H<sub>2</sub>O（咬遮罩→Invar 變色、藥液變黃棕）</span>
+              <span class="equation">2H<sub>2</sub>O<sub>2</sub> → 2H<sub>2</sub>O + O<sub>2</sub>↑（自解，Fe<sup>2+</sup> 催化加速→整槽冒泡變溫）</span>
+              <span class="equation">2Ag<sup>+</sup> + Mg → 2Ag↓ + Mg<sup>2+</sup>（反鍍，對鐵、鎳同理→Invar 上灰白鏡面）</span>
+              <span class="equation">S<sub>2</sub>O<sub>3</sub><sup>2−</sup> + 2H<sup>+</sup> → S↓ + SO<sub>2</sub>↑ + H<sub>2</sub>O（B 遇酸/熱析硫→藥液<strong>黃濁</strong>＋SO<sub>2</sub> 刺激嗆味；渣若含銀，後續會變黑色硫化銀）</span>
+            </div>
+          </div>
+        </div>
+      </details>
+
+      <p class="assumption"><strong>一個要先接受的事實：</strong>從電位表看，鐵和鎳比銀「更容易」被氧化，所以不存在只溶銀、不咬 Invar 的魔法藥水。能做的是讓咬 Invar 的速度慢到量不出來：氧化劑控量、銀離子抓牢、緩蝕劑鋪膜、時間到立刻出槽。下面三個關鍵現象，就是這場「動力學攻防」的三個戰場。</p>
+    </section>
+
+    <section aria-labelledby="risk-title">
+      <div class="section-heading">
+        <div>
+          <span class="section-kicker">THREE PHENOMENA｜三個關鍵現象</span>
+          <h2 id="risk-title">看懂這三件事，實驗才調得動</h2>
+        </div>
+        <p class="section-note">每一題照同一順序講：原理 → 為什麼會發生 → 對 Strip 的影響 → 如何改善 → 實驗時看什麼。</p>
+      </div>
+
+      <div class="phenomena-stack">
+        <article class="phenomenon-block">
+          <h3>H₂O₂（雙氧水）：A、C 方案裡銀的「開罐器」</h3>
+          <p><strong>原理：</strong>銀很安定，泡在一般酸裡幾乎不會溶。H₂O₂ 的工作是把銀表面的原子氧化成銀離子（Ag⁺），讓銀進得了溶液——在 A、C 配方裡，它是<strong>唯一能讓銀層開始溶</strong>的成分，像開罐器。（B 方案不用它：雙氧水會把硫代硫酸鹽打壞，所以 B 改用三價鐵當溫和氧化劑，見方案 B。）</p>
+          <p><strong>為什麼會發生（為什麼需要它）：</strong>沒有氧化劑，配方對銀完全沒轍——Mg-Ag 層會只掉鎂，留下一層溶不掉的銀骨架。它還有第二個任務：萬一有銀反鍍回遮罩，殘餘的 H₂O₂ 能把剛鍍上的銀再溶回來。</p>
+          <p><strong>對 Strip 的影響：</strong>太少＝銀溶不動、時間拖長。太多有三個惡果：①銀表面反而生成一層緻密的氧化銀膜（鈍化），越濃越慢；②開始咬 Invar，鐵溶出；③溶出的鐵回頭催化 H₂O₂ 自我分解（放熱、狂冒氧氣泡），藥水壽命大減。第一輪估的 1–2 M 確認太高，本輪掃描 0.05–0.20 M。</p>
+          <p><strong>如何改善：</strong>在 0.05／0.10／0.20 M 三階找窗口；工作液現配現用、H₂O₂ 永遠最後加；加完 30 分鐘內開始實驗；容器用塑膠（HDPE／PP），別讓藥液碰金屬器具。</p>
+          <p><strong>實驗時看什麼：</strong>①銀粉溶完時間——比預期慢＝濃度不足或 H₂O₂ 已失效；②Invar 變黃、變黑＝過量在咬遮罩；③整槽持續冒細泡還微微變溫＝自我分解，該瓶數據作廢重配；④同一瓶藥放半天後銀粉溶解明顯變慢＝老化快，記下時間點。</p>
+
+          <div class="window-visual">
+            <h3>要找的是中間的操作窗口</h3>
+            <div class="window-track" aria-label="雙氧水濃度操作窗口示意">
+              <span class="window-low">太稀<br>銀溶不動</span>
+              <span class="window-good">合適<br>剝銀且守住遮罩</span>
+              <span class="window-high">太濃<br>鈍化、咬 Invar、自解快</span>
+            </div>
+            <p class="window-caption">掃描範圍 0.05–0.20 M。實務容量：0.15 M 起始，每公升約能吃 5.4–8.6 克銀。</p>
+          </div>
+        </article>
+
+        <article class="phenomenon-block">
+          <h3>銀離子反鍍：頭號敵人</h3>
+          <p><strong>原理：</strong>溶進藥液的銀離子「想變回金屬銀」的傾向極強。一碰到比它活潑的金屬——鎂、鐵、鎳，而遮罩本體就是鐵鎳合金——就會自動搶電子、還原成金屬銀，重新鍍在表面上。不用通電，自己就會發生。</p>
+          <p><strong>為什麼會發生（電位差到底造成什麼影響）：</strong>電位差就是這個反應的「推力」大小。銀離子對鎂 3.17 V、對鐵 1.25 V、對鎳 1.06 V——三個都遠大於零，代表三個反應<strong>都一定想發生</strong>，差別只是快慢。這就是為什麼反鍍不可能被「禁止」，只能被「壓慢」：配體把游離銀離子濃度壓低十幾個數量級之後，推力大減，但方向仍然存在。</p>
+          <p><strong>對 Strip 的影響：</strong>反鍍層是一層灰白或鏡面的銀膜，蓋在剛洗乾淨的 Invar 上——等於白洗，而且比原鍍層更難重溶。容易發生的條件：液中銀濃度越高（洗越多片越危險）、藥液靜止不流動、樣品泡超過必要時間、出槽後表面掛著藥液沒立刻沖、配方裡沒有抓銀的配體。</p>
+          <p><strong>如何改善：</strong>①配體抓牢銀離子——A/C 用甲硫胺酸、B 用硫代硫酸鈉；②PVP 吸附在金屬表面，讓銀無處落腳；③全程攪拌或循環，不留死水；④時間到立刻出槽、立刻大量 DI 水沖洗；⑤槽液銀濃度到警戒值就換液，不硬撐。</p>
+          <p><strong>實驗時看什麼：</strong>水洗吹乾後，把 Invar 片對著光轉動看——灰白霧面、鏡面亮斑、或一擦就掉的深灰粉，都是反鍍。特別檢查液面交界處和邊角。粗篩時把 Invar 片和銀粉放同一瓶泡，就是最靈敏的反鍍測試：銀粉供應銀離子，Invar 片當靶。</p>
+        </article>
+
+        <article class="phenomenon-block">
+          <h3>二次沉澱：藥液失控的警報</h3>
+          <p><strong>原理：</strong>溶進藥液的金屬離子，只在特定 pH 範圍內乖乖溶著。pH 一升高，離子就變成不溶的氫氧化物渣。以約 1 mM 游離離子估的工程警戒線：鐵約 pH 2.2 就開始、銦約 2.8、鐿 6.6、鋅 7.2、鎳 7.9（配方裡的螯合劑會把界線往後推，所以實際以觀察為準）。另有兩個特例不看 pH：氯離子＋銀＝白色氯化銀（痕量氯就中招）、硫＋銀＝黑色硫化銀（最嚴重的黑化殺手）。</p>
+          <p><strong>為什麼會形成：</strong>三個來源——①酸被鍍層消耗掉，pH 自然往上漂，一越過警戒線就沉澱；②自來水或不純原料把氯離子帶進槽；③方案 B 的硫代硫酸鹽遇熱、遇酸、遇強氧化會分解出硫。</p>
+          <p><strong>對 Strip 的影響：</strong>渣會卡在遮罩開孔和表面，比原鍍層更難清；渣裡含銀時，等於在遮罩上撒反鍍源；而且一旦出渣，代表藥液組成已失控，該瓶數據不能採信。</p>
+          <p><strong>如何改善：</strong>①配方內建緩衝與螯合（檸檬酸／檸檬酸鈉、EDTA），減緩 pH 漂移、包住雜離子；②全程量 pH，漂移超過 ±0.2 就停；③只用 DI／RO 水和試藥級原料，嚴禁含氯；④磷酸鹽類完全不進槽（銦、鐿、鎂的磷酸鹽都會沉）；⑤方案 B 藥液一變濁、一發黑就整瓶報廢重配，不補料硬救。</p>
+          <p><strong>實驗時看什麼：</strong>①藥液從透明變混濁的時間點，和當下的 pH；②瓶底渣的顏色（判讀都要跟同批空白新液比，B 新液本身帶鐵色）——<strong>白渣</strong>＝疑似氯化銀，也可能是銦、鐿、鋅的氫氧化物，先量 pH 再查水源與原料；<strong>黑渣</strong>＝疑似硫化銀或懸浮銀微粒（方案 B 的分解警訊）；<strong>黃棕渣</strong>＝疑似氫氧化鐵（pH 漂高，或 Invar 正在被咬——同時檢查 Invar 片）；③需要更準時，用 0.2 µm 濾紙過濾看濾渣量。</p>
+        </article>
+      </div>
+
+      <p class="assumption">量產槽的換液監控（雙氧水滴定、總酸滴定、ORP、ICP 警戒值）已備好完整指標，粗篩階段用不到，先收在研究檔案裡不佔版面。</p>
+    </section>
+
+    <section aria-labelledby="routes-title">
+      <div class="section-heading">
+        <div>
+          <span class="section-kicker">THREE RECIPES｜三個可直接測試的方案</span>
+          <h2 id="routes-title">三個方向，各給一張 1 公升配製單</h2>
+        </div>
+        <p class="section-note">三個方案化學邏輯刻意不同：A 用弱酸＋緩衝求平衡、B 用近中性＋強配體保遮罩、C 用強酸換速度。同一套步驟與判讀表跑，數據自然分高下。</p>
+      </div>
+
+      <div class="recipe-stack">
+        <article class="route-card">
+          <div class="recipe-heading"><h3>方案 A｜弱酸絡合</h3><span class="route-tag">（首選，先跑這個）</span></div>
+          <div class="data-table-wrap" tabindex="0">
+            <table class="data-table table-recipe">
+              <thead><tr><th>成分</th><th>1 L 用量</th><th>為什麼要加它</th></tr></thead>
+              <tbody>
+                <tr><td>DI／RO 水</td><td>先加約 800 mL</td><td>基底。嚴禁自來水——氯離子會直接生成氯化銀白渣</td></tr>
+                <tr><td>檸檬酸（無水）</td><td>19.2 g</td><td>主酸：溶鎂、鐿、IZO；同時當螯合劑，把銦、鐿包住不讓它們變渣</td></tr>
+                <tr><td>檸檬酸鈉（二水）</td><td>8.8 g</td><td>和檸檬酸搭成緩衝對，減緩反應中 pH 往上漂</td></tr>
+                <tr><td>甲基磺酸 MSA（70%）</td><td>先加 5.2 mL，之後照 pH 補</td><td>補酸力、加快 IZO 與鎂；它的銀鹽溶解度極高，不出渣</td></tr>
+                <tr><td>甲硫胺酸</td><td>4.5 g</td><td>抓銀配體：壓低游離銀離子，防反鍍（食品級胺基酸、無列管）</td></tr>
+                <tr><td>PVP（K30）</td><td>0.5 g</td><td>表面保護膜：吸附在金屬表面，讓銀離子難落腳</td></tr>
+                <tr><td>NMP</td><td>50 mL（5% v/v）</td><td>泡軟並溶解 CPL 有機保護層</td></tr>
+                <tr><td>雙氧水（35%）</td><td>13 mL，<strong>最後加</strong></td><td>A/C 裡唯一能把銀氧化進溶液的成分；最後加是為了讓它壽命最長</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="recipe-flow"><strong>配製流程：</strong>水→固體全溶→NMP→補水至約 950 mL→量 pH，用 70% MSA 微調至 <strong>2.3±0.2</strong>（預估 MSA 總量約 9–10 mL，以 pH 計為準）→最後加雙氧水→補水至 1 L→複測並記錄 pH。</p>
+          <p class="condition-line"><strong>條件列：</strong>溫度＝室溫 25°C（低於 20°C 用水浴帶到 25）｜時間＝上限 8 分鐘，每 1–2 分鐘目視｜預期效果＝鎂、鐿、IZO 前 2–4 分鐘先掉，銀最慢；液色與空白相比應近無色｜原料成本≈NT$15–25／L（工業級公斤價估，NMP 佔一半；試藥級小罐會貴數倍）｜單次實驗（配藥＋反應＋清洗記錄）約 1 小時。</p>
+        </article>
+
+        <article class="route-card">
+          <div class="recipe-heading"><h3>方案 B｜近中性硫代硫酸鹽</h3><span class="route-tag">（最保護遮罩）</span></div>
+          <div class="data-table-wrap" tabindex="0">
+            <table class="data-table table-recipe">
+              <thead><tr><th>成分</th><th>1 L 用量</th><th>為什麼要加它</th></tr></thead>
+              <tbody>
+                <tr><td>DI／RO 水</td><td>先加約 800 mL</td><td>基底，禁自來水</td></tr>
+                <tr><td>硫代硫酸鈉（五水）</td><td>62 g</td><td>抓銀最強的合法配體：游離銀離子壓到最低，反鍍抑制三案最強</td></tr>
+                <tr><td>EDTA-2Na（二水）</td><td>11.2 g</td><td>把溶出的雜金屬離子包住，防二次沉澱</td></tr>
+                <tr><td>甘胺酸</td><td>7.5 g</td><td>共配體與輔助緩蝕（pH 主要靠配製時實調維持，不靠它）</td></tr>
+                <tr><td>EDTA 鐵(III)鈉鹽（三水合物，MW≈421，CAS 18154-32-0）</td><td>4.2 g（＝10 mM 鐵），<strong>最後加</strong></td><td>本方案的氧化劑：<strong>不加雙氧水</strong>（會把硫代硫酸鹽打壞），改用三價鐵溫和氧化銀。10 mM 理論上限約 1.08 g 銀／L——氧化容量天生低，是本方案的已知弱點</td></tr>
+                <tr><td>鉬酸鈉（二水）</td><td>0.5 g</td><td>Invar 緩蝕劑（粗篩時可加做一組不加鉬酸鈉的對照，確認它真有貢獻）</td></tr>
+                <tr><td>BTA（苯并三唑）</td><td>0.25 g</td><td>金屬表面成膜緩蝕</td></tr>
+                <tr><td>NMP</td><td>50 mL（5% v/v）</td><td>CPL 溶劑</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="recipe-flow"><strong>配製流程：</strong>水→固體（Fe 鹽除外）全溶→NMP→補水至約 950 mL→調 pH 至 <strong>6.2±0.3</strong>（偏高用檸檬酸、偏低用 5% NaOH）→最後加 EDTA 鐵(III)鈉鹽→補水至 1 L→複測 pH，<strong>隨即使用</strong>。（替代品：檸檬酸鐵銨的鐵含量依產品等級變動，若用它需按實際鐵含量配到 10 mM（約 0.56 g 鐵／L），且只能另立「B2 對照組」，不可視為等同。）</p>
+          <p class="condition-line"><strong>條件列：</strong>溫度＝室溫 25°C、<strong>不可超過 30°C</strong>（硫代硫酸鹽怕熱怕酸，分解出硫＝黑渣）｜時間＝上限 8 分鐘｜預期效果＝「反鍍抑制最強、Invar 最安全」是設計目標；<strong>銀溶不溶得動是本方案要驗證的第一個問題</strong>——銀粉瓶只投 50 mg（其他方案 100 mg，因為 B 的氧化容量低，投太多注定溶不完、測不出真相），8 分鐘看不到明顯減量＝氧化當量不足，鐵鹽加倍再試一次，仍不行就出局；IZO 在 pH 6 也可能太慢，同樣不硬撐｜原料成本≈NT$20–30／L（同上基準）｜單次約 1 小時。</p>
+        </article>
+
+        <article class="route-card is-caution">
+          <div class="recipe-heading"><h3>方案 C｜MSA 強酸快攻</h3><span class="route-tag">（最快，風險最高）</span></div>
+          <div class="data-table-wrap" tabindex="0">
+            <table class="data-table table-recipe">
+              <thead><tr><th>成分</th><th>1 L 用量</th><th>為什麼要加它</th></tr></thead>
+              <tbody>
+                <tr><td>DI／RO 水</td><td>先加約 800 mL</td><td>基底，禁自來水</td></tr>
+                <tr><td>甲基磺酸 MSA（70%）</td><td>26 mL（約 34 g）</td><td>主酸：鎂、鐿、IZO 溶最快，最有機會 8 分鐘全清；銀鹽溶解度極高</td></tr>
+                <tr><td>甲硫胺酸</td><td>7.5 g</td><td>強酸中硫代硫酸鹽不能用（會分解），抓銀只能靠它，所以加到 A 的 1.7 倍</td></tr>
+                <tr><td>PVP（K30）</td><td>1 g</td><td>表面保護加倍——本方案 Invar 風險最高</td></tr>
+                <tr><td>BTA（苯并三唑）</td><td>0.3 g</td><td>緩蝕；強酸中效果打折，所以與 PVP 疊加</td></tr>
+                <tr><td>NMP</td><td>50 mL（5% v/v）</td><td>CPL 溶劑</td></tr>
+                <tr><td>雙氧水（35%）</td><td>9 mL，<strong>最後加</strong></td><td>溶銀；刻意比 A 低（強酸環境咬 Invar 風險高，氧化劑收著用）</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="recipe-flow"><strong>配製流程：</strong>水→MSA→固體全溶→NMP→最後加雙氧水→補水至 1 L→量 pH <strong>照實記錄、不調整</strong>（預期約 0.6–0.8；pH 計要能量強酸區並兩點校正，讀值低於 1 時同時記下 MSA 實際投料量佐證）。</p>
+          <p class="condition-line"><strong>條件列：</strong>溫度＝室溫 25°C｜時間＝<strong>先試 3–5 分鐘就檢查一次</strong>，上限仍 8 分鐘——本方案咬 Invar 風險三案最高，寧可分段看｜預期效果＝速度最快；本方案存在的目的就是回答「更快，能不能同時零損傷」，Invar 一超標立即出局｜原料成本≈NT$15–25／L（同上基準）｜單次約 1 小時。</p>
+        </article>
+      </div>
+
+      <p class="assumption"><strong>共同規則：</strong>加料順序固定「水→固體→NMP→調 pH→氧化劑最後（A/C＝雙氧水、B＝EDTA 鐵鹽）→補至 1 L」；氧化劑加完 30 分鐘內開始實驗；粗篩階段藥液一律單次使用不回收；先跑 A，再用 C 驗證速度上限，B 當反鍍與遮罩安全的對照組。</p>
+
+      <h3>氧化劑備案（正選只有兩種：A/C 的雙氧水、B 的三價鐵）</h3>
+      <p>以下為候補，供斷貨、失效或正選被打槍時遞補。四個都屬勞動部「優先管理化學品」（報備制，與 NMP 同級，可合法使用）；但每一個都要先小試與配方的相容性，不直接進正式配方。</p>
+      <div class="data-table-wrap" tabindex="0">
+        <table class="data-table">
+          <thead>
+            <tr><th>候補</th><th>適用方案</th><th>為什麼可當備案</th><th>注意事項</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>過硼酸鈉（四水）</td>
+              <td>A／C</td>
+              <td>固態的「雙氧水載體」，溶水放出 H₂O₂，化學行為最接近正選；粉體好秤好存</td>
+              <td>理論上 1 g 約當 0.22 g 雙氧水（依純度／有效氧規格修正）；會帶入硼與鈉</td>
+            </tr>
+            <tr>
+              <td>過硫酸鈉</td>
+              <td>A／C</td>
+              <td>PCB 微蝕常用、固態穩定</td>
+              <td>金屬離子、熱與超音波都可能把它活化變兇——可能連 NMP、PVP、BTA、甲硫胺酸一起攻擊；硫酸根累積會限制銀容量。從低濃度小試</td>
+            </tr>
+            <tr>
+              <td>Oxone（過一硫酸氫鉀複鹽）</td>
+              <td>A／C</td>
+              <td>游泳池氧化劑，市面好買、酸性環境穩定</td>
+              <td>不是雙氧水的等價替代：本身會酸化配方、帶入硫酸鹽，且會快速氧化甲硫胺酸（把抓銀配體打掉）。只能低濃度試探</td>
+            </tr>
+            <tr>
+              <td>硫酸銅（五水）＋EDTA</td>
+              <td>B</td>
+              <td>文獻中銅(II)可催化硫代硫酸鹽溶銀（經典工業系統是銅-氨-硫代硫酸鹽，此為無氨變形）</td>
+              <td>銅會進槽：Invar 上可能置換出銅斑、增加電偶腐蝕；也會加速硫代硫酸根被氧化；BTA 抓銅可能讓催化失效。僅當 B 的對照小試</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section aria-labelledby="sop-title">
+      <div class="section-heading">
+        <div>
+          <span class="section-kicker">SOP｜實驗步驟</span>
+          <h2 id="sop-title">六步驟，每一組實驗都一樣</h2>
+        </div>
+        <p class="section-note">變的只有配方；步驟、時間點、觀察項目全部固定，數據才能互相比較。</p>
+      </div>
+
+      <ol class="sop-list">
+        <li><strong>配藥</strong>——照配製單順序加料（氧化劑一律最後），攪拌至全溶，記錄實際 pH 與配製時間。</li>
+        <li><strong>控溫</strong>——本藥水設計在室溫工作，不需加熱：水浴維持 25°C 即可；室溫低於 20°C 才用溫水浴帶上來，嚴禁超過 30°C。</li>
+        <li><strong>放樣品</strong>——每個配方開 4 個 100 mL 瓶：銀粉 100 mg（<strong>方案 B 只投 50 mg</strong>）／鐿顆粒 100 mg／IZO 顆粒 100 mg／Invar 片一片（<strong>面積 ≥20 cm²</strong>，有 0.1 mg 天平就先稱重）。有 Mg-Ag＋CPL 真試片時再加開一瓶。開超音波：60–80 kHz，功率照之前量熱法校正過的檔位（實測 10–20 W/L）。鐿顆粒開封後別長時間吹潮濕空氣。</li>
+        <li><strong>反應計時</strong>——上限 8 分鐘（方案 C 先在 3–5 分鐘檢查一次），每 1–2 分鐘目視並輕搖；固體提前溶完就記下時間、提前結束。Invar 一出現變色或定點氣泡，立即中止該瓶。</li>
+        <li><strong>清洗</strong>——取出樣品→DI 水大量沖 30 秒→乾淨 DI 水再泡 1 分鐘→吹乾或用無塵紙壓乾。</li>
+        <li><strong>肉眼觀察＋拍照</strong>——照下方六項判讀表逐項記錄（「無」也是數據）；Invar 片有稱重的做反應後複稱；藥液留瓶靜置，順便觀察後續有無變色、出渣。</li>
+      </ol>
+
+      <p class="assumption"><strong>肉眼的定位講清楚：</strong>肉眼＋拍照能淘汰明顯不合格的配方，這是本階段的目的；但「零損傷」最終要靠失重（單次 ≤0.001 mg/cm²）、粗糙度與孔徑量測驗收。粗篩過關＝值得進下一輪，不等於通過驗收。</p>
+
+      <h3>整輪要花多久？（分三層講）</h3>
+      <div class="data-table-wrap" tabindex="0">
+        <table class="data-table">
+          <thead>
+            <tr><th>項目</th><th>估時</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>單組實驗（1 個配方 × 4 瓶同時泡）</td>
+              <td>約 1 小時（配藥 30–45 分＋反應 ≤8 分＋清洗、觀察、記錄 15–20 分）</td>
+            </tr>
+            <tr>
+              <td>第一輪三方案全跑（A、B、C 各一組）</td>
+              <td>約 1 個工作天</td>
+            </tr>
+            <tr>
+              <td><strong>第一層：快速粗篩</strong>（照判讀表一次改一階迭代，每方案 3–5 輪）</td>
+              <td>藥品到齊後約 <strong>4–5 個工作天</strong>（一位助理、一台超音波槽、一天 4–6 組）</td>
+            </tr>
+            <tr>
+              <td><strong>第二層：完整參數掃描</strong>（3 路線 × 12 組參數組合，統計上更嚴謹，視粗篩結果決定要不要跑）</td>
+              <td>約 6–9 個工作天</td>
+            </tr>
+            <tr>
+              <td><strong>第三層：正式驗收</strong>（真試片混合負載、10 次循環累積失重、粗糙度／孔徑量測、槽液壽命曲線）</td>
+              <td>另一階段，需儀器與真試片配合，時程另估</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p>以上不含採購到貨時間。兩台超音波槽並行約可壓縮三成（排程估算；配藥、清洗與記錄仍是瓶頸）。現階段先走第一層，粗篩能分出高下就直接進真試片。</p>
+    </section>
+
+    <section aria-labelledby="read-adjust-title">
+      <div class="section-heading">
+        <div>
+          <span class="section-kicker">READ &amp; ADJUST｜觀察與調整</span>
+          <h2 id="read-adjust-title">六個現象：代表什麼、下一步怎麼調</h2>
+        </div>
+        <p class="section-note">現階段全靠肉眼＋拍照，不動用 SEM／EDS。所有顏色判讀都跟同批空白新液比（B 新液本身帶鐵色）。</p>
+      </div>
+
+      <div class="data-table-wrap" tabindex="0">
+        <table class="data-table table-reading">
+          <thead><tr><th>觀察項目</th><th>代表什麼</th><th>下一步怎麼調</th></tr></thead>
+          <tbody>
+            <tr><td><strong>① 鍍層是否完全去除</strong></td><td>哪一瓶沒溶完，就是那個機制不夠力</td><td>銀剩→A/C：H₂O₂ 加 0.05 M 或延時；B：鐵鹽加倍（<strong>禁加雙氧水</strong>）。IZO 剩→pH 降 0.3。CPL 剩→NMP 提到 10%。全部都慢→藥品可能失效，重配再試一次</td></tr>
+            <tr><td><strong>② Invar 腐蝕或變色</strong></td><td>變黃變棕＝鐵溶出（被咬）；黑點＝點蝕；整面失光＝全面腐蝕</td><td>A/C：H₂O₂ 減半、pH 升 0.3、緩蝕劑加倍、時間縮短——一次只改一項；改完仍咬→出局。B 出現腐蝕→直接出局（它已是最溫和設定）</td></tr>
+            <tr><td><strong>③ 銀返鍍</strong></td><td>Invar 表面灰白霧、鏡面亮斑、擦得掉的深灰粉</td><td>甲硫胺酸加倍（A/C）、PVP 加倍、加強攪拌、出槽後更快沖洗；只在泡很久或高負載時出現→記下門檻，訂銀濃度警戒值</td></tr>
+            <tr><td><strong>④ 沉澱（渣）</strong></td><td>白渣＝疑似氯化銀，也可能是銦／鐿／鋅氫氧化物；黑渣＝疑似硫化銀或銀微粒（B 分解警訊）；黃棕渣＝疑似氫氧化鐵（pH 漂高或 Invar 被咬）</td><td>白→先量 pH，再徹底換 DI 水與原料批號；黑→B 整瓶重配、降溫，<strong>不補氧化劑硬救</strong>；黃棕→量 pH，同時回頭檢查第②項</td></tr>
+            <tr><td><strong>⑤ 藥液變色</strong></td><td>跟空白比：A/C 空白近無色，出現黃棕＝鐵溶出（Invar 被咬的警訊，不是正常）；B 要看的是比新液「加深」多少；灰黑＝銀微粒懸浮或硫化銀</td><td>黃棕→照第②項處理；灰黑→A/C 微調 H₂O₂ 與甲硫胺酸各一階（分兩次實驗改）；B 灰黑→整瓶重配</td></tr>
+            <tr><td><strong>⑥ 起泡</strong></td><td>顆粒上細泡＝鎂、鐿正常溶解放氫；Invar 上定點泡＝遮罩被酸咬（立即停）；整槽持續冒泡還變溫＝H₂O₂ 自我分解（A/C；B 沒有雙氧水，整槽異常冒泡多半是分解前兆）</td><td>Invar 泡→pH 升 0.3 或換配方；A/C 自分解→現配現用、查鐵污染、H₂O₂ 降一階；B 異常冒泡→整瓶重配</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="assumption"><strong>調整鐵律：</strong>一次實驗只改一個變數、一階（H₂O₂ 一階＝0.05 M、pH 一階＝0.3、配體一階＝加倍）。同時改兩個，看到差異也不知道是誰的功勞。每輪數據回饋後，由 AI 端重算下一輪配方，錯的方向當天就砍。</p>
+    </section>
+
+    <section aria-labelledby="chemicals-title">
+      <div class="section-heading">
+        <div>
+          <span class="section-kicker">SHOPPING LIST｜化學品對照表</span>
+          <h2 id="chemicals-title">縮寫、中文、英文、CAS 一次列清</h2>
+        </div>
+        <p class="section-note">詢價、採購、查 SDS 都用這張表；CAS 號碼是化學品的身分證，報給供應商就不會買錯。</p>
+      </div>
+
+      <h3>正選配方用</h3>
+      <div class="data-table-wrap" tabindex="0">
+        <table class="data-table">
+          <thead>
+            <tr><th>頁面用名</th><th>中文全名</th><th>英文全名</th><th>CAS No.</th><th>用途</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>MSA</td><td>甲基磺酸（70% 水溶液）</td><td>Methanesulfonic acid</td><td>75-75-2</td><td>A/C 主酸</td></tr>
+            <tr><td>雙氧水（35%）</td><td>過氧化氫</td><td>Hydrogen peroxide</td><td>7722-84-1</td><td>A/C 氧化劑</td></tr>
+            <tr><td>檸檬酸（無水）</td><td>檸檬酸</td><td>Citric acid, anhydrous</td><td>77-92-9</td><td>A 主酸＋螯合</td></tr>
+            <tr><td>檸檬酸鈉（二水）</td><td>檸檬酸三鈉二水合物</td><td>Trisodium citrate dihydrate</td><td>6132-04-3</td><td>A 緩衝</td></tr>
+            <tr><td>甲硫胺酸</td><td>甲硫胺酸（DL 型即可，較便宜）</td><td>DL-Methionine</td><td>59-51-8（L 型：63-68-3）</td><td>A/C 抓銀配體</td></tr>
+            <tr><td>PVP（K30）</td><td>聚乙烯吡咯烷酮 K30</td><td>Polyvinylpyrrolidone K30</td><td>9003-39-8</td><td>表面保護</td></tr>
+            <tr><td>NMP</td><td>N-甲基吡咯烷酮</td><td>N-Methyl-2-pyrrolidone</td><td>872-50-4</td><td>CPL 溶劑（優先管理化學品，依 EHS 領用）</td></tr>
+            <tr><td>硫代硫酸鈉（五水）</td><td>硫代硫酸鈉五水合物</td><td>Sodium thiosulfate pentahydrate</td><td>10102-17-7</td><td>B 抓銀配體</td></tr>
+            <tr><td>EDTA-2Na（二水）</td><td>乙二胺四乙酸二鈉二水合物</td><td>EDTA disodium salt dihydrate</td><td>6381-92-6</td><td>B 螯合</td></tr>
+            <tr><td>甘胺酸</td><td>甘胺酸</td><td>Glycine</td><td>56-40-6</td><td>B 共配體</td></tr>
+            <tr><td>EDTA 鐵(III)鈉鹽（三水）</td><td>乙二胺四乙酸鐵(III)鈉鹽三水合物</td><td>EDTA iron(III) sodium salt trihydrate</td><td>18154-32-0（無水型：15708-41-5，改用時 4.2 g 換算為 3.7 g）</td><td>B 氧化劑</td></tr>
+            <tr><td>鉬酸鈉（二水）</td><td>鉬酸鈉二水合物</td><td>Sodium molybdate dihydrate</td><td>10102-40-6</td><td>B 緩蝕</td></tr>
+            <tr><td>BTA</td><td>苯并三唑</td><td>1H-Benzotriazole</td><td>95-14-7</td><td>B/C 緩蝕</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>pH 調整用</h3>
+      <div class="data-table-wrap" tabindex="0">
+        <table class="data-table">
+          <thead>
+            <tr><th>頁面用名</th><th>中文全名</th><th>英文全名</th><th>CAS No.</th><th>用途</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>NaOH（5%）</td><td>氫氧化鈉</td><td>Sodium hydroxide</td><td>1310-73-2</td><td>B 調 pH（偏低時）</td></tr>
+            <tr><td>檸檬酸鐵銨</td><td>檸檬酸鐵銨</td><td>Ammonium ferric citrate</td><td>1185-57-5</td><td>B2 對照組替代鐵源（按實際鐵含量換算）</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>候補氧化劑（備案，先不用買）</h3>
+      <div class="data-table-wrap" tabindex="0">
+        <table class="data-table">
+          <thead>
+            <tr><th>頁面用名</th><th>中文全名</th><th>英文全名</th><th>CAS No.</th><th>用途</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>過硼酸鈉（四水）</td><td>過硼酸鈉四水合物</td><td>Sodium perborate tetrahydrate</td><td>10486-00-7</td><td>A/C 備案</td></tr>
+            <tr><td>過硫酸鈉</td><td>過硫酸鈉</td><td>Sodium persulfate</td><td>7775-27-1</td><td>A/C 備案</td></tr>
+            <tr><td>Oxone</td><td>過一硫酸氫鉀複鹽</td><td>Oxone monopersulfate compound（potassium peroxymonosulfate triple salt）</td><td>70693-62-8</td><td>A/C 備案</td></tr>
+            <tr><td>硫酸銅（五水）</td><td>硫酸銅五水合物</td><td>Copper(II) sulfate pentahydrate</td><td>7758-99-8</td><td>B 備案（配 EDTA）</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="assumption"><strong>採購提醒：</strong>全部用試藥級（不能含氯）；雙氧水買 35% 規格（≥36% 屬消防法管制物）；NMP 與候補氧化劑屬「優先管理化學品」等級，依公司 EHS 程序領用申報。候補氧化劑先不用買，正選卡關再說。</p>
+    </section>
+
+    <section aria-labelledby="model-title">
+      <div class="section-heading">
+        <div>
+          <span class="section-kicker">WORKING MODEL｜開發模式</span>
+          <h2 id="model-title">AI 當大腦，一位助理就能跑</h2>
+        </div>
+        <p class="section-note">法規查證、機制推導、配方設計、粗篩由 AI 研究引擎完成；線下只需要一雙手操作與記錄。</p>
+      </div>
+
+      <div class="life-grid" aria-label="開發閉環四步驟">
+        <article class="life-item">
+          <strong>① AI 設計</strong>
+          <p>配方、粗篩、記錄表、判停紅線一次備齊；本輪從法規查證到三方案配製單、判讀表在一天內完成。</p>
+        </article>
+        <article class="life-item">
+          <strong>② 助理實驗</strong>
+          <p>照表操作與記錄，不需資深背景；紅線內建在 SOP 裡，不會燒壞客戶遮罩。</p>
+        </article>
+        <article class="life-item">
+          <strong>③ 數據回饋</strong>
+          <p>當天數據回饋 AI 重算，修正濃度與因子範圍，錯的方向當天就砍。</p>
+        </article>
+        <article class="life-item">
+          <strong>④ 下一輪配方</strong>
+          <p>迭代週期＝實驗時間本身，設計零等待；收斂速度遠快於傳統試錯。</p>
+        </article>
+      </div>
+
+      <p class="assumption"><strong>對外承諾的誠實邊界：</strong>目前不宣稱「已有零損傷的單槽藥水」；能宣稱的是三條可執行、成本與失效模式都已量化的路線，以及一套讓數據快速說話的閉環。人力需求：一位實驗助理。</p>
+    </section>
+
+    <section aria-labelledby="sources-title">
+      <div class="section-heading">
+        <div>
+          <span class="section-kicker">REFERENCES｜參考來源</span>
+          <h2 id="sources-title">本階段查證依據</h2>
+        </div>
+        <p class="section-note">以下連結會在新分頁開啟。</p>
+      </div>
+
+      <div class="source-grid">
+        <a class="source-card" href="https://www.cha.gov.tw/sp-toch-form-1952-0ae6b8d2968d4b53bc1d31f3532a137b-1.html" target="_blank" rel="noopener noreferrer">
+          <span>
+            <span class="source-type">台灣法規</span>
+            <span class="source-title">環境部化學物質管理署：硫脲毒化物列管查詢（144-01・第四類）</span>
+          </span>
+          <span class="source-arrow" aria-hidden="true">↗</span>
+        </a>
+        <a class="source-card" href="https://patents.google.com/patent/CN112609189A/zh" target="_blank" rel="noopener noreferrer">
+          <span>
+            <span class="source-type">專利</span>
+            <span class="source-title">CN112609189A：Open Mask 表面 MgAg 的醋酸＋雙氧水清洗（同題先例，但需 30–60 分鐘）</span>
+          </span>
+          <span class="source-arrow" aria-hidden="true">↗</span>
+        </a>
+        <a class="source-card" href="https://patents.google.com/patent/CN112553571A/zh" target="_blank" rel="noopener noreferrer">
+          <span>
+            <span class="source-type">專利</span>
+            <span class="source-title">CN112553571A：Open Mask 表面 IZO 殘留的濕法清洗再生</span>
+          </span>
+          <span class="source-arrow" aria-hidden="true">↗</span>
+        </a>
+        <a class="source-card" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8540589/" target="_blank" rel="noopener noreferrer">
+          <span>
+            <span class="source-type">研究論文</span>
+            <span class="source-title">MSA＋H<sub>2</sub>O<sub>2</sub> 綠色溶銀（甲基磺酸銀溶解度 713 g/L）</span>
+          </span>
+          <span class="source-arrow" aria-hidden="true">↗</span>
+        </a>
+        <a class="source-card" href="https://link.springer.com/article/10.1007/s10953-022-01191-x" target="_blank" rel="noopener noreferrer">
+          <span>
+            <span class="source-type">研究論文</span>
+            <span class="source-title">銀—甲硫胺酸配位化學（硫醚配位、廣 pH 範圍）</span>
+          </span>
+          <span class="source-arrow" aria-hidden="true">↗</span>
+        </a>
+        <a class="source-card" href="https://srd.nist.gov/jpcrdreprint/1.555839.pdf" target="_blank" rel="noopener noreferrer">
+          <span>
+            <span class="source-type">數據庫</span>
+            <span class="source-title">NIST 標準還原電位彙編（本頁所有 E° 依據）</span>
+          </span>
+          <span class="source-arrow" aria-hidden="true">↗</span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <span class="confidential">內部研發資料・請勿外流</span>
+      <span>產生日期：2026-07-18</span>
+    </div>
+  </footer>
+</body>
+</html>

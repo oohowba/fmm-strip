@@ -1,0 +1,13 @@
+config.env
+*.env
+.wrangler/
+node_modules/
+.DS_Store
+
+# 內部研發工作檔（不進公用 repo）
+specs/
+transcript.md
+round2-*.md
+prompt-*.md
+out-*.md
+out-*.err
