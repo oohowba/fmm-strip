@@ -94,7 +94,7 @@ function saveRecord_(payload) {
     incoming['雲端儲存時間'] = new Date();
     incoming['紀錄狀態'] = '已完成';
 
-    const values = headers.map(header => cleanCell_(Object.prototype.hasOwnProperty.call(incoming, header) ? incoming[header] : ''));
+    const values = headers.map(header => normalizeCell_(header, Object.prototype.hasOwnProperty.call(incoming, header) ? incoming[header] : ''));
     let row = findExperimentRow_(sheet, experimentId, CONFIG.headerRow + 1);
     let mode = 'updated';
     if (!row) {
@@ -175,6 +175,18 @@ function cleanCell_(value) {
   if (typeof value === 'number' || value instanceof Date) return value;
   const text = String(value);
   return /^[=+\-@]/.test(text) ? "'" + text : text;
+}
+
+function normalizeCell_(header, value) {
+  if (value === null || value === undefined || value === '') return '';
+  if (typeof value === 'number' || value instanceof Date) return value;
+  const text = String(value).trim();
+  const numericHeader = /(pH|_min|_C|_kHz|_W_L|_mL_L|_g_L|_mg|消耗率|_cm2|_mg_cm2|藥液量_mL)$/;
+  if (numericHeader.test(String(header)) && text !== '') {
+    const numeric = Number(text);
+    if (Number.isFinite(numeric)) return numeric;
+  }
+  return cleanCell_(text);
 }
 
 function postMessageResponse_(response) {
