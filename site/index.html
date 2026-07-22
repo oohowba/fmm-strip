@@ -261,7 +261,7 @@
       letter-spacing: 0.13em;
     }
 
-    .summary-panel p {
+    .assistant-entry {\n      display: flex;\n      flex-wrap: wrap;\n      align-items: center;\n      justify-content: space-between;\n      gap: 14px 22px;\n      margin-top: 22px;\n      padding: 18px 20px;\n      border-radius: 12px;\n      color: #eef8f5;\n      background: var(--navy);\n    }\n\n    .assistant-entry strong {\n      font-size: 18px;\n    }\n\n    .assistant-entry a {\n      padding: 9px 14px;\n      border-radius: 8px;\n      color: var(--navy-deep);\n      background: var(--gold);\n      font-size: 16px;\n      font-weight: 900;\n      text-decoration: none;\n    }\n\n    .summary-panel p {
       margin-bottom: 0;
       font-family: "Songti TC", "PMingLiU", serif;
       font-size: 23px;
@@ -1219,8 +1219,8 @@
       <div class="eyebrow">內部研發進度</div>
       <h1>Open Mask 鍍層移除藥水｜研發進度</h1>
       <div class="hero-meta">
-        <span>更新日期：2026-07-18（第三輪・實驗指南版）</span>
-        <span class="status-chip">三個 1L 配方＋採購清單定稿・等粗篩數據</span>
+        <span>更新日期：2026-07-22（助理工作台測試版）</span>
+        <span class="status-chip">三個方向已分派・準備助理粗篩</span>
       </div>
     </div>
   </header>
@@ -1229,7 +1229,7 @@
     <aside class="summary-panel" aria-labelledby="summary-title">
       <span class="summary-label" id="summary-title">一句話總結</span>
       <p>本頁已從研究報告改寫成「研發實驗指南」：三個可直接照做的 1 公升配方（A 弱酸絡合＝首選、B 近中性＝最保護遮罩、C 強酸快攻＝最快但風險最高）、一套統一的實驗步驟，以及六項肉眼判讀表——每個現象代表什麼、下一步該調哪個成分，都寫在對應段落。核心觀念只有一句：保護 Invar 靠的不是藥水「認得」銀，而是氧化劑控量、把銀離子抓牢、時間到立刻出槽沖洗。</p>
-    </aside>
+    </aside>\n\n    <div class="assistant-entry" aria-label="助理實驗工作台入口">\n      <strong>布萊恩與 Easy：從這裡閱讀任務、填寫紀錄並產生 LINE 回報</strong>\n      <a href="assistant.html">進入助理實驗工作台 →</a>\n    </div>
 
     <section aria-labelledby="project-title">
       <div class="section-heading">

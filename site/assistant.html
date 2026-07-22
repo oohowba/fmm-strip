@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="Open Mask 鍍層移除實驗助理工作台：布萊恩與 Easy 的操作重點、實驗紀錄及回報產生器。">
+  <title>助理實驗工作台｜Open Mask 鍍層移除</title>
+  <style>
+    :root{color-scheme:light;--navy:#102c38;--deep:#091d25;--paper:#f5f1e8;--surface:#fffdf8;--cool:#eef3f2;--line:#cbd5d1;--teal:#17746c;--teal-dark:#0d554f;--copper:#b6542d;--copper-pale:#f7e2d6;--gold:#e6b95e;--ink:#17242b;--soft:#4d5c62;--ok:#dceee9;--shadow:0 16px 38px rgba(16,44,56,.09);--radius:18px}
+    *{box-sizing:border-box}html{scroll-behavior:smooth;background:var(--paper)}body{margin:0;min-width:320px;color:var(--ink);background:linear-gradient(rgba(16,44,56,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(16,44,56,.035) 1px,transparent 1px),var(--paper);background-size:28px 28px;font-family:"PingFang TC","Microsoft JhengHei","Noto Sans TC",sans-serif;font-size:17px;line-height:1.65}button,input,select,textarea{font:inherit}a{color:var(--teal-dark);text-underline-offset:4px}a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--gold);outline-offset:3px}h1,h2,h3{margin-top:0;font-family:"Songti TC","PMingLiU",serif;line-height:1.3}h1{margin-bottom:14px;color:#fff;font-size:clamp(35px,7vw,62px)}h2{font-size:clamp(27px,4.5vw,40px)}h3{font-size:22px}.wrap{width:min(1120px,calc(100% - 36px));margin-inline:auto}.hero{padding:70px 0 85px;color:#eef7f4;background:radial-gradient(circle at 85% 15%,rgba(230,185,94,.25),transparent 28%),linear-gradient(128deg,var(--deep),var(--navy) 68%,#174b54)}.eyebrow{display:block;margin-bottom:14px;color:#d4e7e3;font-size:15px;font-weight:800;letter-spacing:.14em}.hero p{max-width:760px;margin-bottom:18px;font-size:20px}.back-link{display:inline-block;color:#fff;font-size:16px;font-weight:800}.workspace{margin-top:-40px;padding-bottom:80px}.panel{margin-bottom:24px;padding:28px;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);box-shadow:var(--shadow)}.intro{border-left:7px solid var(--gold)}.intro strong{color:var(--navy)}.tabs{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:24px}.tab{padding:18px;border:2px solid var(--line);border-radius:14px;color:var(--navy);background:var(--surface);font-size:18px;font-weight:900;cursor:pointer}.tab[aria-selected="true"]{border-color:var(--teal);color:#fff;background:var(--teal-dark)}.assistant-pane[hidden]{display:none}.mission-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.mission{padding:24px;border:1px solid var(--line);border-top:6px solid var(--teal);border-radius:14px;background:var(--surface)}.mission.caution{border-top-color:var(--copper)}.tag{display:inline-block;margin-bottom:10px;padding:5px 10px;border-radius:999px;color:var(--teal-dark);background:var(--ok);font-size:15px;font-weight:900}.mission.caution .tag{color:#813619;background:var(--copper-pale)}.mission ul{padding-left:1.3em}.mission li+li{margin-top:7px}.warning{padding:22px;border:2px solid var(--copper);border-radius:14px;color:#62301d;background:var(--copper-pale)}.warning h3{color:#813619}.warning ul{margin-bottom:0;padding-left:1.3em}.form-title{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:12px}.save-state{color:var(--teal-dark);font-size:15px;font-weight:800}.form-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.field{display:flex;min-width:0;flex-direction:column;gap:7px}.field.wide{grid-column:1/-1}.field.half{grid-column:span 2}.field label,.group-label{color:var(--navy);font-size:16px;font-weight:900}.hint{color:var(--soft);font-size:15px}.field input,.field select,.field textarea{width:100%;padding:12px 13px;border:1px solid #9eada8;border-radius:9px;color:var(--ink);background:#fff}.field textarea{min-height:108px;resize:vertical}.check-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.check{display:flex;align-items:flex-start;gap:9px;padding:11px;border:1px solid var(--line);border-radius:9px;background:var(--cool);font-size:16px}.check input{width:20px;height:20px;margin-top:3px;accent-color:var(--teal)}.sample-table{display:grid;gap:12px}.sample-row{display:grid;grid-template-columns:150px 1fr 1fr;gap:12px;align-items:center;padding:14px;border:1px solid var(--line);border-radius:12px;background:var(--cool)}.sample-row strong{color:var(--navy)}.sample-row select,.sample-row input{width:100%;padding:10px;border:1px solid #9eada8;border-radius:8px;background:#fff}.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}.btn{padding:12px 18px;border:0;border-radius:9px;color:#fff;background:var(--teal-dark);font-size:16px;font-weight:900;cursor:pointer}.btn.secondary{color:var(--navy);background:var(--gold)}.btn.ghost{border:1px solid var(--line);color:var(--navy);background:var(--cool)}.btn.danger{background:var(--copper)}.report{display:none;margin-top:22px}.report.show{display:block}.report textarea{width:100%;min-height:390px;padding:16px;border:1px solid var(--teal);border-radius:10px;background:#f7fbf9;font-family:"Menlo","Consolas",monospace;font-size:15px;line-height:1.65}.notice{margin-top:14px;color:var(--soft);font-size:15px}.status-banner{display:none;margin-bottom:18px;padding:15px 18px;border-radius:10px;font-weight:900}.status-banner.show{display:block}.status-banner.ok{color:var(--teal-dark);background:var(--ok)}.status-banner.stop{color:#813619;background:var(--copper-pale)}footer{padding:28px 0;color:#d6e5e1;background:var(--deep);font-size:15px}
+    @media(max-width:760px){.mission-grid,.form-grid,.check-grid{grid-template-columns:1fr}.field.half{grid-column:auto}.sample-row{grid-template-columns:1fr}.tabs{grid-template-columns:1fr}.panel{padding:22px}.hero{padding-top:50px}.hero p{font-size:18px}}
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="wrap">
+      <span class="eyebrow">ASSISTANT LAB｜現場實驗與回報</span>
+      <h1>助理實驗工作台</h1>
+      <p>先看自己的任務與停止紅線，再照主頁配方操作。完成後填表，產生一份可以直接貼到 LINE 的標準回報。</p>
+      <a class="back-link" href="index.html">← 回到完整研發指南與 1 L 配製單</a>
+    </div>
+  </header>
+
+  <main class="wrap workspace">
+    <section class="panel intro">
+      <h2>今天誰負責哪個方向？</h2>
+      <p><strong>布萊恩：</strong>方案 A、方案 C（雙氧水方向）。<strong>Easy：</strong>方案 B（近中性、不使用雙氧水）。三個方案都要測現有的 <strong>Mg-Ag＋CPL 真試片</strong>，也要同步確認 Invar 是否受損。</p>
+      <p>助理只負責照表操作、完整記錄與回報；<strong>不要自行補藥或決定下一輪配方</strong>，下一輪由 Nico 看完結果後決定。</p>
+    </section>
+
+    <nav class="tabs" aria-label="選擇助理">
+      <button class="tab" type="button" data-person="brian" aria-selected="true">布萊恩｜方案 A、C</button>
+      <button class="tab" type="button" data-person="easy" aria-selected="false">Easy｜方案 B</button>
+    </nav>
+
+    <section id="brian-pane" class="assistant-pane" data-pane="brian">
+      <div class="panel">
+        <h2>布萊恩｜雙氧水方向</h2>
+        <div class="mission-grid">
+          <article class="mission">
+            <span class="tag">方案 A｜首選</span><h3>弱酸絡合</h3>
+            <ul><li><strong>目標：</strong>在移除 Mg-Ag、CPL、IZO、鐿的同時，盡量保護 Invar。</li><li><strong>簡單原理：</strong>雙氧水讓銀開始溶解；弱酸、甲硫胺酸與 PVP 協助帶走金屬並降低返鍍。</li><li><strong>條件：</strong>25°C、pH 2.3±0.2、上限 8 分鐘，每 1–2 分鐘觀察。</li><li><a href="index.html#routes-title">查看主頁方案 A 的完整 1 L 配製單</a></li></ul>
+          </article>
+          <article class="mission caution">
+            <span class="tag">方案 C｜高風險</span><h3>MSA 強酸快攻</h3>
+            <ul><li><strong>目標：</strong>確認更快的移除速度，能否同時不傷 Invar。</li><li><strong>簡單原理：</strong>強酸加快 Mg、鐿與 IZO 的移除，雙氧水負責溶銀；速度快但傷基材風險最高。</li><li><strong>條件：</strong>25°C，3–5 分鐘先檢查，上限 8 分鐘；pH 照實記錄，不自行調整。</li><li><a href="index.html#routes-title">查看主頁方案 C 的完整 1 L 配製單</a></li></ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="easy-pane" class="assistant-pane" data-pane="easy" hidden>
+      <div class="panel">
+        <h2>Easy｜近中性方向</h2>
+        <div class="mission-grid">
+          <article class="mission">
+            <span class="tag">方案 B｜保護優先</span><h3>近中性硫代硫酸鹽</h3>
+            <ul><li><strong>目標：</strong>先確認比較溫和的條件能否移除鍍層，同時保護 Invar。</li><li><strong>簡單原理：</strong>硫代硫酸鹽抓住銀，三價鐵溫和地讓銀開始溶解。</li><li><strong>條件：</strong>25°C、不可超過 30°C、pH 6.2±0.3、上限 8 分鐘。</li><li><strong>禁止：</strong>不可加入雙氧水，也不可看到反應慢就自行補氧化劑。</li><li><a href="index.html#routes-title">查看主頁方案 B 的完整 1 L 配製單</a></li></ul>
+          </article>
+          <article class="mission">
+            <span class="tag">本方向先回答</span><h3>銀能不能溶得動？</h3>
+            <ul><li>銀粉粗篩只投 50 mg，其他樣品照主頁 SOP。</li><li>若 8 分鐘仍沒有明顯減量，照實記錄，不自行改配方。</li><li>藥液發黑、變濁或異常冒泡時，整瓶停止使用並立即回報。</li></ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel warning" aria-labelledby="stop-title">
+      <h3 id="stop-title">看到以下任何一項：立即停止該瓶並回報</h3>
+      <ul><li>Invar 或真試片出現黑點、明顯變色、失光或定點冒泡。</li><li>藥液快速升溫、大量持續冒泡、明顯黑渣或黃棕色沉澱。</li><li>pH 或溫度超出該方案範圍、實際加錯藥或加錯量。</li><li>停止後先記下時間、溫度、pH，拍現場照片；不要自行補藥硬救。</li></ul>
+    </section>
+
+    <section class="panel" id="record">
+      <div class="form-title"><div><span class="eyebrow" style="color:var(--copper)">RECORD｜完整實驗紀錄</span><h2>填完後產生 LINE 回報</h2></div><span class="save-state" id="save-state">尚未輸入</span></div>
+      <div id="status-banner" class="status-banner" role="status"></div>
+      <form id="lab-form">
+        <div class="form-grid">
+          <div class="field"><label for="operator">操作者</label><input id="operator" name="operator" value="布萊恩" required></div>
+          <div class="field"><label for="date">實驗日期</label><input id="date" name="date" type="date" required></div>
+          <div class="field"><label for="experiment-id">實驗編號</label><input id="experiment-id" name="experimentId" placeholder="例如 A-01" required></div>
+          <div class="field"><label for="route">執行方案</label><select id="route" name="route"><option value="A">方案 A｜弱酸絡合</option><option value="C">方案 C｜MSA 強酸快攻</option></select></div>
+          <div class="field"><label for="recipe-version">配方版本</label><input id="recipe-version" name="recipeVersion" placeholder="例如 V1"></div>
+          <div class="field"><label for="time-range">開始／結束時間</label><input id="time-range" name="timeRange" placeholder="例如 09:10–10:05"></div>
+          <div class="field"><label for="ph">初始／結束 pH</label><input id="ph" name="ph" placeholder="例如 2.3／2.5"></div>
+          <div class="field"><label for="temperature">初始／最高溫度</label><input id="temperature" name="temperature" placeholder="例如 25／27°C"></div>
+          <div class="field"><label for="reaction-time">實際反應時間</label><input id="reaction-time" name="reactionTime" placeholder="例如 5 分 30 秒"></div>
+          <div class="field half"><label for="actual-dose">實際投料與偏離標準步驟</label><textarea id="actual-dose" name="actualDose" placeholder="逐項填實際加入量；完全照表也請寫「依主頁配製單，無偏離」"></textarea></div>
+          <div class="field"><label for="ultrasonic">超音波條件</label><textarea id="ultrasonic" name="ultrasonic" placeholder="頻率、檔位、實測功率或設備設定"></textarea></div>
+          <div class="field wide"><span class="group-label">樣品結果</span><span class="hint">結果選項之外的細節，填在右側備註。</span>
+            <div class="sample-table">
+              <div class="sample-row"><strong>Mg-Ag＋CPL 真試片</strong><select name="sampleReal"><option>請選擇</option><option>完全移除</option><option>部分移除</option><option>未明顯移除</option><option>基材疑似受損</option><option>未測</option></select><input name="sampleRealNote" placeholder="時間、外觀、CPL 是否殘留"></div>
+              <div class="sample-row"><strong>銀粉</strong><select name="sampleAg"><option>請選擇</option><option>完全消失</option><option>明顯變小</option><option>稍微變小</option><option>無明顯變化</option><option>未測</option></select><input name="sampleAgNote" placeholder="開始反應時間、剩餘量"></div>
+              <div class="sample-row"><strong>鐿顆粒</strong><select name="sampleYb"><option>請選擇</option><option>完全消失</option><option>明顯變小</option><option>稍微變小</option><option>無明顯變化</option><option>未測</option></select><input name="sampleYbNote" placeholder="起泡、變化時間"></div>
+              <div class="sample-row"><strong>IZO 顆粒</strong><select name="sampleIzo"><option>請選擇</option><option>完全消失</option><option>明顯變小</option><option>稍微變小</option><option>無明顯變化</option><option>未測</option></select><input name="sampleIzoNote" placeholder="變化時間、剩餘情況"></div>
+              <div class="sample-row"><strong>Invar 片</strong><select name="sampleInvar"><option>請選擇</option><option>外觀正常</option><option>輕微變色</option><option>明顯變色或失光</option><option>黑點或定點起泡</option><option>未測</option></select><input name="sampleInvarNote" placeholder="前後重量、表面狀況"></div>
+            </div>
+          </div>
+          <div class="field wide"><span class="group-label">六項肉眼判讀</span><div class="check-grid">
+            <label class="check"><input type="checkbox" name="coatingRemoved">鍍層完全去除</label><label class="check"><input type="checkbox" name="invarDamage">Invar 腐蝕或變色</label><label class="check"><input type="checkbox" name="silverPlate">疑似銀返鍍</label><label class="check"><input type="checkbox" name="precipitate">出現沉澱或渣</label><label class="check"><input type="checkbox" name="colorChange">藥液明顯變色</label><label class="check"><input type="checkbox" name="abnormalBubble">異常起泡</label>
+          </div></div>
+          <div class="field half"><label for="observations">每 1–2 分鐘觀察與異常現象</label><textarea id="observations" name="observations" placeholder="例如 0、2、4、6、8 分鐘各看到什麼；「無」也是數據"></textarea></div>
+          <div class="field"><label for="photo-ids">照片編號</label><textarea id="photo-ids" name="photoIds" placeholder="例如 A-01-01～A-01-06"></textarea></div>
+          <div class="field"><label for="stopped">是否提前停止</label><select id="stopped" name="stopped"><option value="否">否</option><option value="是">是</option></select></div>
+          <div class="field half"><label for="stop-reason">停止原因／助理備註</label><textarea id="stop-reason" name="stopReason" placeholder="若未提前停止，可填其他重要觀察"></textarea></div>
+        </div>
+        <div class="actions"><button class="btn" type="button" id="generate">產生完整回報</button><button class="btn danger" type="button" id="urgent">產生立即停止回報</button><button class="btn ghost" type="button" id="clear">清除本次紀錄</button></div>
+      </form>
+      <div class="report" id="report"><h3>回報文字</h3><textarea id="report-text" readonly></textarea><div class="actions"><button class="btn secondary" type="button" id="copy">複製回報</button><button class="btn ghost" type="button" id="download">下載文字檔</button></div><p class="notice">請把文字貼到 LINE，再附上對應照片。完整資料只暫存在目前這台裝置的瀏覽器，換裝置不會自動帶過去。</p></div>
+    </section>
+  </main>
+  <footer><div class="wrap">內部研發資料・請勿外流｜助理不得自行變更配方或補藥</div></footer>
+  <script>
+    (()=>{
+      const form=document.querySelector('#lab-form'),tabs=[...document.querySelectorAll('.tab')],panes=[...document.querySelectorAll('.assistant-pane')],route=document.querySelector('#route'),operator=document.querySelector('#operator'),report=document.querySelector('#report'),reportText=document.querySelector('#report-text'),saveState=document.querySelector('#save-state'),banner=document.querySelector('#status-banner');
+      const key='fmm-assistant-record-v1';
+      document.querySelector('#date').value=new Date().toISOString().slice(0,10);
+      function person(value){tabs.forEach(t=>t.setAttribute('aria-selected',String(t.dataset.person===value)));panes.forEach(p=>p.hidden=p.dataset.pane!==value);if(value==='easy'){operator.value='Easy';route.innerHTML='<option value="B">方案 B｜近中性硫代硫酸鹽</option>'}else{operator.value='布萊恩';route.innerHTML='<option value="A">方案 A｜弱酸絡合</option><option value="C">方案 C｜MSA 強酸快攻</option>'}save()}
+      tabs.forEach(t=>t.addEventListener('click',()=>person(t.dataset.person)));
+      function data(){const d={};new FormData(form).forEach((v,k)=>d[k]=v);form.querySelectorAll('input[type="checkbox"]').forEach(x=>d[x.name]=x.checked);d.person=tabs.find(t=>t.getAttribute('aria-selected')==='true')?.dataset.person||'brian';return d}
+      function save(){localStorage.setItem(key,JSON.stringify(data()));saveState.textContent='已自動暫存 '+new Date().toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit'})}
+      function load(){try{const d=JSON.parse(localStorage.getItem(key)||'null');if(!d)return;person(d.person||'brian');Object.entries(d).forEach(([k,v])=>{const el=form.elements[k];if(!el)return;if(el.type==='checkbox')el.checked=Boolean(v);else el.value=v});saveState.textContent='已載入上次暫存'}catch(e){saveState.textContent='暫存讀取失敗'}}
+      form.addEventListener('input',save);form.addEventListener('change',save);
+      const val=(d,k)=>String(d[k]||'未填').trim()||'未填';const yn=v=>v?'是':'否';
+      function full(){const d=data();return `【實驗完成回報】\n操作者：${val(d,'operator')}\n日期：${val(d,'date')}\n實驗編號：${val(d,'experimentId')}\n執行方案：${val(d,'route')}\n配方版本：${val(d,'recipeVersion')}\n開始／結束時間：${val(d,'timeRange')}\n實際反應時間：${val(d,'reactionTime')}\n初始／結束 pH：${val(d,'ph')}\n初始／最高溫度：${val(d,'temperature')}\n超音波條件：${val(d,'ultrasonic')}\n實際投料／步驟偏離：${val(d,'actualDose')}\n\n【樣品結果】\nMg-Ag＋CPL：${val(d,'sampleReal')}｜${val(d,'sampleRealNote')}\n銀粉：${val(d,'sampleAg')}｜${val(d,'sampleAgNote')}\n鐿顆粒：${val(d,'sampleYb')}｜${val(d,'sampleYbNote')}\nIZO：${val(d,'sampleIzo')}｜${val(d,'sampleIzoNote')}\nInvar：${val(d,'sampleInvar')}｜${val(d,'sampleInvarNote')}\n\n【六項判讀】\n鍍層完全去除：${yn(d.coatingRemoved)}\nInvar 腐蝕或變色：${yn(d.invarDamage)}\n疑似銀返鍍：${yn(d.silverPlate)}\n沉澱或渣：${yn(d.precipitate)}\n藥液明顯變色：${yn(d.colorChange)}\n異常起泡：${yn(d.abnormalBubble)}\n\n每 1–2 分鐘觀察：${val(d,'observations')}\n是否提前停止：${val(d,'stopped')}\n停止原因／助理備註：${val(d,'stopReason')}\n照片編號：${val(d,'photoIds')}\n\n請 Nico 判斷下一輪是否調整；助理未自行補藥或更改配方。`}
+      function urgent(){const d=data();return `【立即停止｜請 Nico 確認】\n操作者：${val(d,'operator')}\n日期／時間：${val(d,'date')} ${val(d,'timeRange')}\n實驗編號：${val(d,'experimentId')}\n執行方案：${val(d,'route')}\n停止時反應時間：${val(d,'reactionTime')}\n當下 pH：${val(d,'ph')}\n當下／最高溫度：${val(d,'temperature')}\n看到的異常：${val(d,'stopReason')}\n現場觀察：${val(d,'observations')}\nMg-Ag＋CPL：${val(d,'sampleReal')}｜${val(d,'sampleRealNote')}\nInvar：${val(d,'sampleInvar')}｜${val(d,'sampleInvarNote')}\n照片編號：${val(d,'photoIds')}\n\n已停止該瓶，未自行補藥，等待 Nico 指示。`}
+      function show(text,type){reportText.value=text;report.classList.add('show');banner.className='status-banner show '+type;banner.textContent=type==='stop'?'已產生立即停止回報：請立刻貼到 LINE 並附現場照片。':'已產生完整回報：請複製到 LINE 並附對應照片。';report.scrollIntoView({behavior:'smooth',block:'start'})}
+      document.querySelector('#generate').addEventListener('click',()=>show(full(),'ok'));document.querySelector('#urgent').addEventListener('click',()=>show(urgent(),'stop'));
+      document.querySelector('#copy').addEventListener('click',async()=>{try{await navigator.clipboard.writeText(reportText.value);banner.className='status-banner show ok';banner.textContent='回報已複製，可以貼到 LINE。'}catch(e){reportText.select();document.execCommand('copy')}});
+      document.querySelector('#download').addEventListener('click',()=>{const d=data(),blob=new Blob([reportText.value],{type:'text/plain;charset=utf-8'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=(d.experimentId||'實驗回報')+'.txt';a.click();URL.revokeObjectURL(a.href)});
+      document.querySelector('#clear').addEventListener('click',()=>{if(!confirm('確定要清除目前這次紀錄嗎？'))return;localStorage.removeItem(key);form.reset();document.querySelector('#date').value=new Date().toISOString().slice(0,10);person('brian');report.classList.remove('show');banner.className='status-banner';saveState.textContent='已清除本次紀錄'});
+      load();
+    })();
+  </script>
+</body>
+</html>
