@@ -13,7 +13,7 @@
   </style>
 </head>
 <body>
-  <header class="hero"><div class="wrap"><span class="eyebrow">ASSISTANT LAB｜現場實驗與數據</span><h1>助理實驗工作台</h1><p>照自己的任務操作，用實驗前後重量與時間記錄真正可比較的數字。完成後儲存、產生 LINE 摘要並下載 CSV 給 Nico。</p><a class="back-link" href="index.html">← 回到完整研發指南與 1 L 配製單</a></div></header>
+  <header class="hero"><div class="wrap"><span class="eyebrow">ASSISTANT LAB｜現場實驗與數據</span><h1>助理實驗工作台</h1><p>照自己的任務操作，用實驗前後重量與時間記錄真正可比較的數字。填寫中自動保存草稿，完成後直接送入雲端數據總表。</p><a class="back-link" href="index.html">← 回到完整研發指南與 1 L 配製單</a></div></header>
   <main class="wrap workspace">
     <section class="panel intro"><h2>分工與資料規則</h2><p><strong>布萊恩：</strong>方案 A、C。<strong>Easy：</strong>方案 B。每個方案先配製 <strong>1 L</strong>，再分成五份：Mg-Ag＋CPL、銀粉、鐿、IZO、空白 Invar，<strong>每種樣品各使用 200 mL</strong>。</p><p>重量填 mg、時間填 min、面積填 cm²。沒有量測就留白，<strong>不要用 0 代替未測</strong>；助理不得自行補藥或決定下一輪配方。</p></section>
     <nav class="tabs" aria-label="選擇助理"><button class="tab" type="button" data-person="brian" aria-selected="true">布萊恩｜方案 A、C</button><button class="tab" type="button" data-person="easy" aria-selected="false">Easy｜方案 B</button></nav>
@@ -29,6 +29,7 @@
           <div class="field"><label for="operator">操作者</label><input id="operator" name="operator" value="布萊恩" required></div>
           <div class="field"><label for="date">實驗日期</label><input id="date" name="date" type="date" required></div>
           <div class="field"><label for="experiment-id">實驗編號</label><input id="experiment-id" name="experimentId" placeholder="例如 A-01" required></div>
+          <div class="field"><label for="cloud-code">雲端上傳碼</label><input id="cloud-code" type="password" autocomplete="off" placeholder="由 Nico 提供"><span class="hint">只用來驗證上傳，不會寫入實驗資料。</span></div>
           <div class="field"><label for="route">方案</label><select id="route" name="route"><option value="A">方案 A</option><option value="C">方案 C</option></select></div>
           <div class="field"><label for="recipe-version">配方版本</label><input id="recipe-version" name="recipeVersion" placeholder="例如 V1"></div>
           <div class="field"><label for="reaction-time">實際反應時間（min）</label><input id="reaction-time" name="reactionTime" type="number" min="0" step="0.1"></div>
@@ -81,16 +82,17 @@
           <div class="field half"><label>照片編號或雲端連結</label><textarea name="photoLink" placeholder="例如 A-01-01～A-01-06"></textarea></div>
           <div class="field"><label>助理初步結論</label><textarea name="assistantConclusion" placeholder="只描述觀察，不自行決定調配"></textarea></div>
         </div>
-        <div class="actions"><button class="btn" type="button" id="complete-save">完成並儲存</button><button class="btn danger" type="button" id="urgent">產生立即停止回報</button><button class="btn ghost" type="button" id="clear">清除目前表單</button></div>
+        <div class="actions"><button class="btn" type="button" id="complete-save">完成並上傳雲端</button><button class="btn danger" type="button" id="urgent">立即停止並上傳</button><button class="btn ghost" type="button" id="clear">清除目前表單</button></div>
       </form>
-      <div class="report" id="report"><h3>回報文字</h3><textarea id="report-text" readonly></textarea><div class="actions"><button class="btn secondary" type="button" id="copy">複製 LINE 回報</button><button class="btn ghost" type="button" id="download-text">下載文字檔</button><button class="btn ghost" type="button" id="download-current-csv">下載本次 CSV</button></div><p class="notice">請把 LINE 摘要與 CSV 一起傳給 Nico。完整紀錄只儲存在目前這台裝置，清除瀏覽器資料後無法復原。</p></div>
+      <div class="report" id="report"><h3>回報文字</h3><textarea id="report-text" readonly></textarea><div class="actions"><button class="btn secondary" type="button" id="copy">複製 LINE 回報</button><button class="btn ghost" type="button" id="download-text">下載文字檔</button><button class="btn ghost" type="button" id="download-current-csv">下載本次 CSV</button></div><p class="notice">雲端確認成功後才算完成回報；本機紀錄與 CSV 保留作為斷線備援。</p></div>
     </section>
 
-    <section class="panel" id="history"><div class="form-title"><div><span class="eyebrow" style="color:var(--copper)">HISTORY｜本機歷史紀錄</span><h2>已完成的實驗</h2></div><span class="save-state" id="history-count">0 筆</span></div><div id="history-content"></div><div class="actions"><button class="btn secondary" type="button" id="export-all">匯出全部 CSV</button><button class="btn danger" type="button" id="clear-history">清除全部歷史</button></div></section>
+    <section class="panel" id="history"><div class="form-title"><div><span class="eyebrow" style="color:var(--copper)">BACKUP｜本機備援紀錄</span><h2>這台裝置的已送出紀錄</h2></div><span class="save-state" id="history-count">0 筆</span></div><div id="history-content"></div><div class="actions"><button class="btn secondary" type="button" id="export-all">匯出全部 CSV</button><button class="btn danger" type="button" id="clear-history">清除本機備援</button></div></section>
   </main>
   <footer><div class="wrap">內部研發資料・請勿外流｜助理不得自行變更配方或補藥</div></footer>
   <script>
   (()=>{
+    const CLOUD_ENDPOINT='';
     const form=document.querySelector('#lab-form');
     const tabs=[...document.querySelectorAll('.tab')];
     const panes=[...document.querySelectorAll('.assistant-pane')];
@@ -100,8 +102,13 @@
     const reportText=document.querySelector('#report-text');
     const saveState=document.querySelector('#save-state');
     const banner=document.querySelector('#status-banner');
+    const cloudCode=document.querySelector('#cloud-code');
+    const completeButton=document.querySelector('#complete-save');
+    const urgentButton=document.querySelector('#urgent');
     const draftKey='fmm-assistant-draft-v2', historyKey='fmm-assistant-history-v2';
-    const csvHeaders=["實驗編號","日期","操作者","方案","配方版本","反應時間_min","初始pH","結束pH","初始溫度_C","最高溫度_C","超音波頻率_kHz","超音波功率_W_L","MSA70%_mL_L","H2O2_35%_mL_L","檸檬酸_g_L","檸檬酸鈉_g_L","甲硫胺酸_g_L","PVP_g_L","NMP_mL_L","硫代硫酸鈉_g_L","EDTA2Na_g_L","甘胺酸_g_L","FeEDTA_g_L","鉬酸鈉_g_L","BTA_g_L","其他投料或步驟偏離","MgAgCPL開始變化_min","MgAgCPL完成時間_min","MgAgCPL移除結果","MgAgCPL外觀","銀粉前重_mg","銀粉後重_mg","銀粉消耗_mg","銀粉消耗率","鐿前重_mg","鐿後重_mg","鐿消耗_mg","鐿消耗率","鐿起泡","鐿開始變化_min","IZO前重_mg","IZO後重_mg","IZO消耗_mg","IZO消耗率","IZO開始變化_min","空白Invar面積_cm2","空白Invar前重_mg","空白Invar後重_mg","Invar失重_mg","Invar失重_mg_cm2","空白Invar外觀","鍍層完全去除","Invar腐蝕變色","疑似銀返鍍","沉澱或渣","藥液明顯變色","異常起泡","提前停止","停止原因與助理備註","照片連結","異常旗標","助理結論","每樣品藥液量_mL"];
+    const pendingCloud=new Map();
+    let cloudDraftTimer;
+    const csvHeaders=["實驗編號","日期","操作者","方案","配方版本","反應時間_min","初始pH","結束pH","初始溫度_C","最高溫度_C","超音波頻率_kHz","超音波功率_W_L","MSA70%_mL_L","H2O2_35%_mL_L","檸檬酸_g_L","檸檬酸鈉_g_L","甲硫胺酸_g_L","PVP_g_L","NMP_mL_L","硫代硫酸鈉_g_L","EDTA2Na_g_L","甘胺酸_g_L","FeEDTA_g_L","鉬酸鈉_g_L","BTA_g_L","其他投料或步驟偏離","MgAgCPL開始變化_min","MgAgCPL完成時間_min","MgAgCPL移除結果","MgAgCPL外觀","銀粉前重_mg","銀粉後重_mg","銀粉開始變化_min","銀粉消耗_mg","銀粉消耗率","鐿前重_mg","鐿後重_mg","鐿消耗_mg","鐿消耗率","鐿起泡","鐿開始變化_min","IZO前重_mg","IZO後重_mg","IZO消耗_mg","IZO消耗率","IZO開始變化_min","空白Invar面積_cm2","空白Invar前重_mg","空白Invar後重_mg","Invar失重_mg","Invar失重_mg_cm2","空白Invar外觀","鍍層完全去除","Invar腐蝕變色","疑似銀返鍍","沉澱或渣","藥液明顯變色","異常起泡","提前停止","停止原因與助理備註","照片連結","異常旗標","助理結論","每樣品藥液量_mL"];
     document.querySelector('#date').value=new Date().toISOString().slice(0,10);
     const rawValue=(d,k)=>d[k]??'';
     const number=(v)=>v===''||v===null||v===undefined?null:Number(v);
@@ -118,24 +125,65 @@
     route.addEventListener('change',updateRouteFields);
     function updateRouteFields(){const r=route.value;document.querySelectorAll('.route-field').forEach(el=>el.hidden=!el.dataset.routes.split(',').includes(r))}
     function data(){const d={};new FormData(form).forEach((v,k)=>d[k]=v);d.person=tabs.find(t=>t.getAttribute('aria-selected')==='true')?.dataset.person||'brian';return d}
-    function saveDraft(){localStorage.setItem(draftKey,JSON.stringify(data()));saveState.textContent='草稿已暫存 '+new Date().toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit'})}
+    function clock(){return new Date().toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit'})}
+    function saveDraft(){localStorage.setItem(draftKey,JSON.stringify(data()));saveState.textContent='本機草稿已保存 '+clock()}
     function loadDraft(){try{const d=JSON.parse(localStorage.getItem(draftKey)||'null');if(!d)return;person(d.person||'brian',false);Object.entries(d).forEach(([k,v])=>{const el=form.elements[k];if(el)el.value=v});updateRouteFields();updateCalculations();saveState.textContent='已載入上次草稿'}catch(e){saveState.textContent='草稿讀取失敗'}}
     function updateCalculations(){const c=calculations(data());document.querySelector('#ag-calc').textContent=`消耗 ${fmt(c.agLoss)} mg｜${percent(c.agRate)}`;document.querySelector('#yb-calc').textContent=`消耗 ${fmt(c.ybLoss)} mg｜${percent(c.ybRate)}`;document.querySelector('#izo-calc').textContent=`消耗 ${fmt(c.izoLoss)} mg｜${percent(c.izoRate)}`;document.querySelector('#invar-calc').textContent=`失重 ${fmt(c.invarLoss)} mg｜${fmt(c.invarPerArea,4)} mg/cm²`}
-    form.addEventListener('input',()=>{updateCalculations();saveDraft()});form.addEventListener('change',()=>{updateCalculations();saveDraft()});
+    function scheduleCloudDraft(){
+      clearTimeout(cloudDraftTimer);
+      const d=data();
+      if(!CLOUD_ENDPOINT||!cloudCode.value||!d.experimentId)return;
+      saveState.textContent='等待同步雲端…';
+      cloudDraftTimer=setTimeout(async()=>{
+        try{const result=await sendCloud('draft',record(data()));saveState.textContent='雲端草稿已保存 '+new Date(result.savedAt).toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit'})}
+        catch(error){saveState.textContent='雲端暫存失敗，本機草稿仍保留'}
+      },10000);
+    }
+    form.addEventListener('input',()=>{updateCalculations();saveDraft();scheduleCloudDraft()});form.addEventListener('change',()=>{updateCalculations();saveDraft();scheduleCloudDraft()});
+    cloudCode.value=sessionStorage.getItem('fmm-cloud-code')||'';
+    cloudCode.addEventListener('input',()=>{sessionStorage.setItem('fmm-cloud-code',cloudCode.value);scheduleCloudDraft()});
     function flag(d){return[d.invarDamage,d.silverPlate,d.precipitate,d.colorChange,d.abnormalBubble,d.stopped].includes('是')?'異常':'正常'}
     function record(d){const c=calculations(d);return{...d,...c,flag:flag(d),savedAt:new Date().toISOString()}}
     function history(){try{return JSON.parse(localStorage.getItem(historyKey)||'[]')}catch(e){return[]}}
     function setHistory(rows){localStorage.setItem(historyKey,JSON.stringify(rows));renderHistory()}
-    function csvRow(r){return[r.experimentId,r.date,r.operator,r.route,r.recipeVersion,r.reactionTime,r.initialPh,r.finalPh,r.initialTemp,r.maxTemp,r.ultraFrequency,r.ultraPower,r.msa,r.h2o2,r.citricAcid,r.sodiumCitrate,r.methionine,r.pvp,r.nmp,r.thiosulfate,r.edta2na,r.glycine,r.feEdta,r.molybdate,r.bta,r.otherDeviation,r.realStart,r.realComplete,r.realResult,r.realAppearance,r.agBefore,r.agAfter,r.agLoss,r.agRate,r.ybBefore,r.ybAfter,r.ybLoss,r.ybRate,r.ybBubble,r.ybChange,r.izoBefore,r.izoAfter,r.izoLoss,r.izoRate,r.izoChange,r.invarArea,r.invarBefore,r.invarAfter,r.invarLoss,r.invarPerArea,r.invarAppearance,r.coatingRemoved,r.invarDamage,r.silverPlate,r.precipitate,r.colorChange,r.abnormalBubble,r.stopped,r.notes,r.photoLink,r.flag,r.assistantConclusion,r.sampleVolume]}
+    function csvRow(r){return[r.experimentId,r.date,r.operator,r.route,r.recipeVersion,r.reactionTime,r.initialPh,r.finalPh,r.initialTemp,r.maxTemp,r.ultraFrequency,r.ultraPower,r.msa,r.h2o2,r.citricAcid,r.sodiumCitrate,r.methionine,r.pvp,r.nmp,r.thiosulfate,r.edta2na,r.glycine,r.feEdta,r.molybdate,r.bta,r.otherDeviation,r.realStart,r.realComplete,r.realResult,r.realAppearance,r.agBefore,r.agAfter,r.agChange,r.agLoss,r.agRate,r.ybBefore,r.ybAfter,r.ybLoss,r.ybRate,r.ybBubble,r.ybChange,r.izoBefore,r.izoAfter,r.izoLoss,r.izoRate,r.izoChange,r.invarArea,r.invarBefore,r.invarAfter,r.invarLoss,r.invarPerArea,r.invarAppearance,r.coatingRemoved,r.invarDamage,r.silverPlate,r.precipitate,r.colorChange,r.abnormalBubble,r.stopped,r.notes,r.photoLink,r.flag,r.assistantConclusion,r.sampleVolume]}
+    function requestId(){return globalThis.crypto&&crypto.randomUUID?crypto.randomUUID():'fmm-'+Date.now()+'-'+Math.random().toString(16).slice(2)}
+    function sendCloud(action,r){
+      if(!CLOUD_ENDPOINT)return Promise.reject(new Error('雲端網址尚未設定'));
+      if(!cloudCode.value)return Promise.reject(new Error('請輸入雲端上傳碼'));
+      const id=requestId(),frameName='fmm-cloud-'+id.replaceAll('-',''),iframe=document.createElement('iframe'),postForm=document.createElement('form'),payload={requestId:id,action,uploadCode:cloudCode.value,record:r};
+      if(action==='submit'){payload.headers=csvHeaders;payload.values=csvRow(r)}
+      iframe.name=frameName;iframe.hidden=true;postForm.method='POST';postForm.action=CLOUD_ENDPOINT;postForm.target=frameName;postForm.hidden=true;
+      const input=document.createElement('input');input.name='payload';input.value=JSON.stringify(payload);postForm.appendChild(input);document.body.append(iframe,postForm);
+      return new Promise((resolve,reject)=>{const timer=setTimeout(()=>{pendingCloud.delete(id);iframe.remove();postForm.remove();reject(new Error('雲端沒有回應，請檢查網路後重試'))},30000);pendingCloud.set(id,{resolve,reject,timer,iframe,postForm});postForm.submit()})
+    }
+    window.addEventListener('message',event=>{
+      if(!/^https:\/\/script\.google(?:usercontent)?\.com$/.test(event.origin))return;
+      const result=event.data,job=result&&pendingCloud.get(result.requestId);if(!job)return;
+      clearTimeout(job.timer);pendingCloud.delete(result.requestId);job.iframe.remove();job.postForm.remove();
+      if(result.ok)job.resolve(result);else job.reject(new Error(result.message||'雲端寫入失敗'));
+    });
     const safeCsv=(v)=>{if(v===null||v===undefined)return'';let s=String(v);if(/^[=+\-@]/.test(s))s="'"+s;return'"'+s.replaceAll('"','""')+'"'};
     function downloadCsv(rows,name){const csv='\ufeff'+[csvHeaders,...rows.map(csvRow)].map(row=>row.map(safeCsv).join(',')).join('\r\n');downloadBlob(csv,'text/csv;charset=utf-8',name)}
     function downloadBlob(text,type,name){const blob=new Blob([text],{type}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;a.click();URL.revokeObjectURL(a.href)}
     function val(d,k){return String(rawValue(d,k)).trim()||'未填'}
     function full(r){return`【實驗完成回報】\n實驗：${val(r,'experimentId')}｜${val(r,'date')}｜${val(r,'operator')}｜方案 ${val(r,'route')}｜版本 ${val(r,'recipeVersion')}\n條件：${val(r,'reactionTime')} min｜pH ${val(r,'initialPh')}→${val(r,'finalPh')}｜溫度 ${val(r,'initialTemp')}→最高 ${val(r,'maxTemp')}°C\n\n【Mg-Ag＋CPL】\n開始變化：${val(r,'realStart')} min｜完成：${val(r,'realComplete')} min｜結果：${val(r,'realResult')}\n時間與外觀：${val(r,'realAppearance')}\n\n【重量數據】\n銀粉：${val(r,'agBefore')}→${val(r,'agAfter')} mg｜消耗 ${fmt(r.agLoss)} mg（${percent(r.agRate)}）\n鐿：${val(r,'ybBefore')}→${val(r,'ybAfter')} mg｜消耗 ${fmt(r.ybLoss)} mg（${percent(r.ybRate)}）｜起泡 ${val(r,'ybBubble')}｜變化 ${val(r,'ybChange')} min\nIZO：${val(r,'izoBefore')}→${val(r,'izoAfter')} mg｜消耗 ${fmt(r.izoLoss)} mg（${percent(r.izoRate)}）｜變化 ${val(r,'izoChange')} min\n空白 Invar：${val(r,'invarBefore')}→${val(r,'invarAfter')} mg｜失重 ${fmt(r.invarLoss)} mg｜${fmt(r.invarPerArea,4)} mg/cm²｜外觀 ${val(r,'invarAppearance')}\n\n【Mg-Ag＋CPL 六項判讀】\n鍍層完全去除：${val(r,'coatingRemoved')}\nInvar 腐蝕或變色：${val(r,'invarDamage')}\n疑似銀返鍍：${val(r,'silverPlate')}\n沉澱或渣：${val(r,'precipitate')}\n藥液變色：${val(r,'colorChange')}\n異常起泡：${val(r,'abnormalBubble')}\n提前停止：${val(r,'stopped')}｜旗標：${r.flag}\n備註：${val(r,'notes')}\n照片：${val(r,'photoLink')}\n助理結論：${val(r,'assistantConclusion')}\n\n請 Nico 判斷下一輪；助理未自行改配方。`}
     function urgent(r){return`【立即停止｜請 Nico 確認】\n實驗：${val(r,'experimentId')}｜${val(r,'date')}｜${val(r,'operator')}｜方案 ${val(r,'route')}\n反應時間：${val(r,'reactionTime')} min｜pH ${val(r,'initialPh')}→${val(r,'finalPh')}｜最高溫 ${val(r,'maxTemp')}°C\n異常與停止原因：${val(r,'notes')}\nMg-Ag＋CPL：${val(r,'realResult')}｜${val(r,'realAppearance')}\n空白 Invar：${val(r,'invarAppearance')}｜失重 ${fmt(r.invarLoss)} mg｜${fmt(r.invarPerArea,4)} mg/cm²\n照片：${val(r,'photoLink')}\n\n已停止該瓶，未自行補藥，等待 Nico 指示。`}
-    function show(text,type){reportText.value=text;report.classList.add('show');banner.className='status-banner show '+type;banner.textContent=type==='stop'?'已產生立即停止回報，請立刻傳給 Nico。':'本次數據已儲存，請把 LINE 摘要與 CSV 傳給 Nico。';report.scrollIntoView({behavior:'smooth',block:'start'})}
-    document.querySelector('#complete-save').addEventListener('click',()=>{const d=data();if(!d.experimentId||!d.date){banner.className='status-banner show stop';banner.textContent='請先填實驗編號與日期。';return}const r=record(d),rows=history(),idx=rows.findIndex(x=>x.experimentId===r.experimentId);if(idx>=0){if(!confirm('這個實驗編號已存在，要用目前資料覆蓋嗎？'))return;rows[idx]=r}else rows.push(r);setHistory(rows);show(full(r),'ok')});
-    document.querySelector('#urgent').addEventListener('click',()=>show(urgent(record(data())),'stop'));
+    function show(text,type,message){reportText.value=text;report.classList.add('show');banner.className='status-banner show '+type;banner.textContent=message;report.scrollIntoView({behavior:'smooth',block:'start'})}
+    function storeLocalBackup(r){const rows=history(),idx=rows.findIndex(x=>x.experimentId===r.experimentId);if(idx>=0)rows[idx]=r;else rows.push(r);setHistory(rows)}
+    async function submitCloud(isUrgent=false){
+      const d=data();
+      if(!d.experimentId||!d.date){banner.className='status-banner show stop';banner.textContent='請先填實驗編號與日期。';return}
+      if(!CLOUD_ENDPOINT){banner.className='status-banner show stop';banner.textContent='雲端後端尚未部署完成，目前不能正式送出。';return}
+      if(!cloudCode.value){banner.className='status-banner show stop';banner.textContent='請先輸入雲端上傳碼。';cloudCode.focus();return}
+      const r=record(d),button=isUrgent?urgentButton:completeButton;
+      button.disabled=true;saveState.textContent='正在上傳雲端…';
+      try{const result=await sendCloud('submit',r);storeLocalBackup(r);localStorage.removeItem(draftKey);saveState.textContent='雲端已確認 '+clock();show(isUrgent?urgent(r):full(r),isUrgent?'stop':'ok',(isUrgent?'已停止並存入雲端。':'已成功存入雲端。')+' 實驗 '+result.experimentId+'｜總表第 '+result.row+' 列')}
+      catch(error){storeLocalBackup(r);saveState.textContent='上傳失敗，本機資料仍保留';show(isUrgent?urgent(r):full(r),'stop','尚未存入雲端：'+error.message+'。資料已保存在本機，請重試。')}
+      finally{button.disabled=false}
+    }
+    completeButton.addEventListener('click',()=>submitCloud(false));
+    urgentButton.addEventListener('click',()=>submitCloud(true));
     document.querySelector('#copy').addEventListener('click',async()=>{try{await navigator.clipboard.writeText(reportText.value);banner.className='status-banner show ok';banner.textContent='LINE 回報已複製。'}catch(e){reportText.select();document.execCommand('copy')}});
     document.querySelector('#download-text').addEventListener('click',()=>downloadBlob(reportText.value,'text/plain;charset=utf-8',(data().experimentId||'實驗回報')+'.txt'));
     document.querySelector('#download-current-csv').addEventListener('click',()=>downloadCsv([record(data())],(data().experimentId||'本次實驗')+'.csv'));
